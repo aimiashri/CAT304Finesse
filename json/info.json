@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Biceps",
+        "img": "assets/img/biceps_bg.png"
+    },
+    {
+        "title": "Abdomen",
+        "img": "assets/img/abdomen.png"
+    },
+    {
+        "title": "Glutes",
+        "img": "assets/img/buttocks.png"
+    },
+    {
+        "title": "Thighs",
+        "img": "assets/img/thighs.png"
+    }
+
+]

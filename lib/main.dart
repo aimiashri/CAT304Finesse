@@ -1,6 +1,6 @@
 import 'package:final_finesse/10_pre_home_screen.dart';
 
-import '00_WelcomeScreen.dart';
+// import '00_WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: ('Poppins'),
         useMaterial3: true,
       ),
-      home: preHomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

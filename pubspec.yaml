@@ -51,6 +51,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+  - assets/img/logo_finesse.png
+  - assets/img/plank.png
+  - assets/img/biceps_bg.png
+  - assets/img/thighs.png
+  - assets/img/buttocks.png
+  - assets/img/abdomen.png
+  - json/info.json
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -58,9 +67,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-     - assets/img/logo_finesse.png
-  #   - images/a_dot_ham.jpeg
+  # assets:
+  # #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

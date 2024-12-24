@@ -1,7 +1,14 @@
-import 'package:final_finesse/view/login/on_boarding_view.dart';
+import 'package:final_finesse/10_pre_home_screen.dart';
+
+import '00_WelcomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   runApp(const MyApp());
 }
 
@@ -12,16 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Finesse CAT304',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: "Poppins, LeagueSpartan",
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        useMaterial3: false,
+        fontFamily: ('Poppins'),
+        useMaterial3: true,
       ),
-      home: const OnboardingView(),
+      home: preHomeScreen(),
     );
   }
 }
-
-

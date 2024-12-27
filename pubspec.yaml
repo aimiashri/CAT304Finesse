@@ -34,6 +34,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  get:
+  video_player:
+  youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
   flutter_test:
@@ -53,12 +56,17 @@ dev_dependencies:
 flutter:
   assets:
   - assets/img/logo_finesse.png
-  - assets/img/plank.png
+  # - assets/img/plank.png
   - assets/img/biceps_bg.png
   - assets/img/thighs.png
   - assets/img/buttocks.png
   - assets/img/abdomen.png
+  - assets/img/squat1.jpg
+  - assets/img/squat2.jpg
+  - assets/img/squat3.jpg
+  - assets/img/squat4.jpg
   - json/info.json
+  - json/videoinfo.json
 
 
   # The following line ensures that the Material Icons font is

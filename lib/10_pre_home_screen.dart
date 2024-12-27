@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:final_finesse/video_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,7 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List info = [];
   _initData() {
     DefaultAssetBundle.of(context).loadString("json/info.json").then((value) {
-      info = jsonDecode(value);
+      setState(() {
+        info = jsonDecode(value);
+      });
     });
   }
 
@@ -26,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF1E1E1E),
       body: Container(
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
@@ -76,7 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.arrow_forward_ios, size: 20, color: Colors.white),
+                InkWell(
+                  onTap: () {
+                    Get.to(()=>VideoInfo());
+                  },
+                  child: Icon(Icons.arrow_forward_ios, size: 20, color: Colors.white)),
               ],
             ),
             SizedBox(height: 20),

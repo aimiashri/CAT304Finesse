@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:final_finesse/11_activityLog.dart';
 import 'package:final_finesse/video_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -47,10 +48,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Expanded(child: Container()),
-                Icon(Icons.arrow_back_ios, size: 20, color: Colors.white),
+                InkWell(
+                    onTap: () {
+                      Get.to(() => HomeScreen());
+                    },
+                    child: Icon(Icons.arrow_back_ios,
+                        size: 20, color: Colors.white)),
                 SizedBox(width: 10),
-                Icon(Icons.calendar_today_outlined,
-                    size: 20, color: Colors.white),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => ActivityLog());
+                  },
+                  child: Icon(Icons.calendar_today_outlined,
+                      size: 20, color: Colors.white),
+                ),
                 SizedBox(width: 15),
                 Icon(Icons.arrow_forward_ios, size: 20, color: Colors.white),
               ],
@@ -81,10 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(width: 5),
                 InkWell(
-                  onTap: () {
-                    Get.to(()=>VideoInfo());
-                  },
-                  child: Icon(Icons.arrow_forward_ios, size: 20, color: Colors.white)),
+                    onTap: () {
+                      Get.to(() => VideoInfo());
+                    },
+                    child: Icon(Icons.arrow_forward_ios,
+                        size: 20, color: Colors.white)),
               ],
             ),
             SizedBox(height: 20),
@@ -165,8 +177,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     blurRadius: 10,
                                     offset: Offset(4, 8))
                               ]),
-                          child: Icon(Icons.play_circle_fill,
-                              color: Colors.white, size: 65),
+                          child: InkWell(
+                            onTap: () {
+                              Get.to(() => VideoInfo());
+                            },
+                            child: Icon(Icons.play_circle_fill,
+                                color: Colors.white, size: 65),
+                          ),
                         ),
                       ],
                     ),
@@ -219,6 +236,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.black,
                                       ),
                                     ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(left:140),
+                                    //   child: Image(
+                                    //     image: AssetImage("assets/img/plank.png"),
+                                    //     alignment: Alignment.bottomRight,
+                                    //     ),
+                                    // )
                                   ],
                                 ),
                               ),

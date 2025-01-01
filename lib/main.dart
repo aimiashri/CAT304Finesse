@@ -1,4 +1,11 @@
-import 'package:final_finesse/10_pre_home_screen.dart';
+import 'package:final_finesse/00_WelcomeScreen.dart';
+import 'package:final_finesse/01_loginScreen.dart';
+import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/11_activityLog.dart';
+import 'package:final_finesse/ViewVouchers.dart';
+import 'package:final_finesse/navigation_menu.dart';
+import 'package:final_finesse/redeemPoints.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:final_finesse/video_info.dart';
 import 'package:video_player/video_player.dart';
@@ -7,7 +14,9 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+Future<void> main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
@@ -26,7 +35,7 @@ class MyApp extends StatelessWidget {
         fontFamily: ('Poppins'),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: NavigationMenu(),
     );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:final_finesse/navigation_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class loginScreen extends StatelessWidget {
   const loginScreen({Key? key}) : super(key: key);
@@ -88,24 +90,29 @@ class loginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 70,
                   ),
-                  Container(
-                    height: 55,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.black),
-                      gradient: const LinearGradient(colors: [
-                        Color(0xFF1E1E1E),
-                        Color(0xFF896CFE),
-                      ]),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'SIGN IN',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => NavigationMenu());
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: Colors.black),
+                        gradient: const LinearGradient(colors: [
+                          Color(0xFF1E1E1E),
+                          Color(0xFF896CFE),
+                        ]),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'SIGN IN',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
@@ -121,8 +128,9 @@ class loginScreen extends StatelessWidget {
                         Text(
                           "Don't have an account?",
                           style: TextStyle(
-                            fontSize: 12,
-                              fontWeight: FontWeight.bold, color: Colors.grey),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
                         ),
                         Text(
                           "Sign up now",

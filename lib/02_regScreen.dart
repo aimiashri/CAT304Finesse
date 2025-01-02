@@ -1,4 +1,4 @@
-import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/03_personalDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,7 +67,7 @@ class RegScreen extends StatelessWidget {
                           color: Colors.grey,
                         ),
                         label: Text(
-                          'Email Adress',
+                          'Email Address',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF896CFE),
@@ -111,7 +111,7 @@ class RegScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => HomeScreen());
+                      Get.to(() => PersonalDetailsPage());
                     },
                     child: Container(
                       height: 55,

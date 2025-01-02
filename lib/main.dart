@@ -1,13 +1,22 @@
 import 'package:final_finesse/00_WelcomeScreen.dart';
 import 'package:final_finesse/01_loginScreen.dart';
+import 'package:final_finesse/02_regScreen.dart';
+import 'package:final_finesse/03_personalDetail.dart';
+import 'package:final_finesse/04_profile_fill.dart';
+import 'package:final_finesse/05_personalise_intro_pg.dart';
+import 'package:final_finesse/07_scanmedReport.dart';
 import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/11_activityLog.dart';
-import 'package:final_finesse/ViewVouchers.dart';
+import 'package:final_finesse/14_ViewVouchers.dart';
+import 'package:final_finesse/20_groupChat.dart';
+import 'package:final_finesse/32_appointmentdone.dart';
+import 'package:final_finesse/31_fitness_appointmentbooking.dart';
+import 'package:final_finesse/30_google_map.dart';
 import 'package:final_finesse/navigation_menu.dart';
-import 'package:final_finesse/redeemPoints.dart';
+import 'package:final_finesse/13_redeemPoints.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:final_finesse/video_info.dart';
+import 'package:final_finesse/12_video_info.dart';
 import 'package:video_player/video_player.dart';
 
 // import '00_WelcomeScreen.dart';
@@ -35,7 +44,7 @@ class MyApp extends StatelessWidget {
         fontFamily: ('Poppins'),
         useMaterial3: true,
       ),
-      home: NavigationMenu(),
+      home: RegScreen(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:final_finesse/11_activityLog.dart';
-import 'package:final_finesse/ViewVouchers.dart';
+import 'package:final_finesse/14_ViewVouchers.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
@@ -273,58 +273,58 @@ class _RedeemPointsState extends State<RedeemPoints> {
                   ),
                 ),
                 SizedBox(height: 10),
-                Container(
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 130,
-                        width: 360,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE2F163),
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                            image: AssetImage('assets/img/zus.png'),
-                            alignment: Alignment.centerLeft,
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30, left: 60),
-                              child: Text(
-                                "Zus Coffee",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 70),
-                              child: Text(
-                                "10% Off Frappe Series",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 280, top: 20),
-                              child: Text(
-                                "500pts",
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: const Color.fromARGB(255, 101, 95, 95),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   child: Stack(
+                //     children: [
+                //       Container(
+                //         height: 130,
+                //         width: 360,
+                //         decoration: BoxDecoration(
+                //           color: Color(0xFFE2F163),
+                //           borderRadius: BorderRadius.circular(10),
+                //           image: DecorationImage(
+                //             image: AssetImage('assets/img/zus.png'),
+                //             alignment: Alignment.centerLeft,
+                //           ),
+                //         ),
+                //         child: Column(
+                //           children: [
+                //             Padding(
+                //               padding: const EdgeInsets.only(top: 30, left: 60),
+                //               child: Text(
+                //                 "Zus Coffee",
+                //                 style: TextStyle(
+                //                   fontSize: 18,
+                //                   fontWeight: FontWeight.bold,
+                //                 ),
+                //               ),
+                //             ),
+                //             Padding(
+                //               padding: const EdgeInsets.only(left: 70),
+                //               child: Text(
+                //                 "10% Off Frappe Series",
+                //                 style: TextStyle(
+                //                   fontSize: 15,
+                //                 ),
+                //               ),
+                //             ),
+                //             Padding(
+                //               padding:
+                //                   const EdgeInsets.only(left: 280, top: 20),
+                //               child: Text(
+                //                 "500pts",
+                //                 style: TextStyle(
+                //                   fontSize: 11,
+                //                   color: const Color.fromARGB(255, 101, 95, 95),
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

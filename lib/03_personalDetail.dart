@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '04_profile_fill.dart';
 
 class PersonalDetailsPage extends StatefulWidget {
   @override
@@ -182,7 +183,10 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            // Add your save logic here
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ProfilePage())
+                            );// Add your save logic here
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,

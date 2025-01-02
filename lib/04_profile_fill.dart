@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '05_personalise_intro_pg.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -7,7 +8,9 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final _nameController = TextEditingController();
+  final _nicknameController = TextEditingController();
   final _emailController = TextEditingController();
+  final _addressController = TextEditingController();
   final _phoneController = TextEditingController();
 
   @override
@@ -29,9 +32,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             child: const Padding(
-              padding: EdgeInsets.only(top: 60.0, left: 22),
+              padding: EdgeInsets.only(top: 100.0, left: 5),
               child: Text(
                 'Fill Profile\nComplete your profile',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
@@ -41,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 200.0),
+            padding: const EdgeInsets.only(top: 280.0),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -54,6 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.all(30),
                 child: Column(
                   children: [
+                    SizedBox(height: 30),
                     TextField(
                       controller: _nameController,
                       decoration: InputDecoration(
@@ -63,6 +68,26 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontWeight: FontWeight.bold,
                         ),
                         prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFF896CFE)),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: _nicknameController,
+                      decoration: InputDecoration(
+                        labelText: 'Nickname',
+                        labelStyle: TextStyle(
+                          color: Color(0xFF896CFE),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        prefixIcon: Icon(Icons.face_outlined, color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xFF896CFE)),
                           borderRadius: BorderRadius.circular(15),
@@ -94,6 +119,27 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(height: 20),
+                    // Residential Address Field
+                    TextField(
+                      controller: _addressController,
+                      decoration: InputDecoration(
+                        labelText: 'Residential Address',
+                        labelStyle: TextStyle(
+                          color: Color(0xFF896CFE),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        prefixIcon: Icon(Icons.home_outlined, color: Colors.grey),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFF896CFE)),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
                     TextField(
                       controller: _phoneController,
                       decoration: InputDecoration(
@@ -113,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 60),
                     Container(
                       height: 55,
                       width: 200,
@@ -128,7 +174,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Add your continue logic here
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => PersonaliseIntroPage())
+                          );// Add your save logic here
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,

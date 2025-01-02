@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '05_personalise_intro_pg.dart';
+import '07_scanmedReport.dart'; // Import the MedicalReportScanPage
 
 class PersonaliseQuestionsPage extends StatefulWidget {
   @override
@@ -14,13 +16,44 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFF1E1E1E),
+        width: MediaQuery.of(context).size.width, // Ensure full width
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF1E1E1E),
+              Color(0xFF896CFE),
+            ],
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 40),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonaliseIntroPage(), // Replace with actual page
+                    ),
+                  );
+                },
+                child: Text(
+                  '< Personalisation',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 20,
+                    color: Color(0xFF896CFE),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(height: 50),
               Text(
                 'What is Your Goal?',
                 style: TextStyle(
@@ -113,6 +146,41 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                     _selectedActivityLevel = newValue;
                   });
                 },
+              ),
+              SizedBox(height: 60), // Spacing before the button
+              Center(
+                child: Container(
+                  height: 50,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white, // Button background color
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MedicalReportScanPage()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: Text(
+                      'CONTINUE',
+                      style: TextStyle(
+                        fontSize: 16, // Slightly smaller font size
+                        color: Colors.black, // Font color
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

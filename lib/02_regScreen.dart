@@ -1,8 +1,4 @@
 import 'package:final_finesse/03_personalDetail.dart';
-<<<<<<< HEAD
-import 'package:final_finesse/10_home_screen.dart';
-=======
->>>>>>> 58b01f1842ad0d7660f0611708c98c5e9cccf02f
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -113,30 +109,6 @@ class RegScreen extends StatelessWidget {
                   const SizedBox(
                     height: 70,
                   ),
-<<<<<<< HEAD
-                     InkWell(
-                      onTap: () {
-                        Get.to(() => PersonalDetailsPage());
-                      },
-                      child: Container(
-                        height: 55,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          gradient: const LinearGradient(colors: [
-                            Color(0xFF896CFE),
-                            Color(0xFF1E1E1E),
-                          ]),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'SIGN UP',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.white),
-                          ),
-=======
                   InkWell(
                     onTap: () {
                       Get.to(() => PersonalDetailsPage());
@@ -158,29 +130,10 @@ class RegScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                               color: Colors.white),
->>>>>>> 58b01f1842ad0d7660f0611708c98c5e9cccf02f
                         ),
                       ),
                     ),
-                  const SizedBox(height: 80)
-                  // const Align(
-                  //   alignment: Alignment.bottomRight,
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.end,
-                  //     crossAxisAlignment: CrossAxisAlignment.end,
-                  //     children: [
-                  //       Text("Don't have account?",style: TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //           color: Colors.grey
-                  //       ),),
-                  //       Text("Sign up",style: TextStyle(///done login page
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 17,
-                  //           color: Colors.black
-                  //       ),),
-                  //     ],
-                  //   ),
-                  // )
+                  )
                 ],
               ),
             ),

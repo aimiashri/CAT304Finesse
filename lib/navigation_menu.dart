@@ -1,4 +1,9 @@
+import 'package:final_finesse/04_profile_fill.dart';
+import 'package:final_finesse/05_personalise_intro_pg.dart';
 import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/13_redeemPoints.dart';
+import 'package:final_finesse/20_groupChat.dart';
+import 'package:final_finesse/30_google_map.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -41,10 +46,10 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
+    const RedeemPoints(),
+    const GroupChat(),
     const HomeScreen(),
-    Container(color: Colors.pink),
-    Container(color: Colors.blue),
-    Container(color: Colors.purple),
-    Container(color: Colors.yellow),
+    const GoogleMapFlutter(),
+    ProfilePage(),
   ];
 }

@@ -1,5 +1,5 @@
 import 'package:final_finesse/10_home_screen.dart';
-import 'package:final_finesse/redeemPoints.dart';
+import 'package:final_finesse/13_redeemPoints.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';

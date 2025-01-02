@@ -133,26 +133,7 @@ class RegScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 80)
-                  // const Align(
-                  //   alignment: Alignment.bottomRight,
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.end,
-                  //     crossAxisAlignment: CrossAxisAlignment.end,
-                  //     children: [
-                  //       Text("Don't have account?",style: TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //           color: Colors.grey
-                  //       ),),
-                  //       Text("Sign up",style: TextStyle(///done login page
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 17,
-                  //           color: Colors.black
-                  //       ),),
-                  //     ],
-                  //   ),
-                  // )
+                  )
                 ],
               ),
             ),

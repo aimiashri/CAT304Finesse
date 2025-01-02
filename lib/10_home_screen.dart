@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:final_finesse/11_activityLog.dart';
-import 'package:final_finesse/video_info.dart';
+import 'package:final_finesse/12_video_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

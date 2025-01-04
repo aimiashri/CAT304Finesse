@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '06_personalise_quest_pg.dart';
 import '08_medical_quest.dart';
+import '10_home_screen.dart';
 
 class MedicalReportScanPage extends StatelessWidget {
   @override
@@ -68,7 +69,7 @@ class MedicalReportScanPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 400, // Increased width of the button
+                      width: 425, // Increased width of the button
                       height: 60, // Increased height of the button
                       child: ElevatedButton.icon(
                         onPressed: () {
@@ -120,7 +121,12 @@ class MedicalReportScanPage extends StatelessWidget {
                     SizedBox(height: 10), // Added spacing between buttons
                     TextButton(
                       onPressed: () {
-                         // Navigate back to the home screen
+                         Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(), // Replace with actual page
+                    ),
+                  );
                       },
                       child: Text(
                         'Go Back To Home',

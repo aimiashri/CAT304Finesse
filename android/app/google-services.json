@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "142741770584",
+    "firebase_url": "https://finesse-setup-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "finesse-setup",
     "storage_bucket": "finesse-setup.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.final_finesse"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "142741770584-hn1bke2ovabqechkbu4dvtmc70ivoitl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.final_finesse",
+            "certificate_hash": "08be89dd9dfc0ef444e0e9b827f1ba0977e27c6e"
+          }
+        },
+        {
+          "client_id": "142741770584-8joiqkv9hrpodeghe8uvqv929sa03j2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAtJK3HEkZp35YCAgHgeaatW8cj4XxyhHk"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142741770584-8joiqkv9hrpodeghe8uvqv929sa03j2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

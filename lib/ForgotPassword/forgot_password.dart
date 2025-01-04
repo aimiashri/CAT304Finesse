@@ -1,5 +1,5 @@
-import 'package:final_finesse/02_signUpScreen.dart';
-import 'package:final_finesse/loginScreen.dart';
+import 'package:final_finesse/01_signUpScreen.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:flutter/material.dart';

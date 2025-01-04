@@ -1,5 +1,5 @@
 import 'package:final_finesse/00_WelcomeScreen.dart';
-import 'package:final_finesse/01_loginScreen.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/04_profile_fill.dart';
 import 'package:final_finesse/05_personalise_intro_pg.dart';
@@ -11,11 +11,11 @@ import 'package:final_finesse/20_groupChat.dart';
 import 'package:final_finesse/32_appointmentdone.dart';
 import 'package:final_finesse/31_fitness_appointmentbooking.dart';
 import 'package:final_finesse/30_google_map.dart';
-import 'package:final_finesse/loginScreen.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/navigation_menu.dart';
 import 'package:final_finesse/13_redeemPoints.dart';
 import 'package:final_finesse/12_videoInfoDUPE.dart';
-import 'package:final_finesse/02_signUpScreen.dart';
+import 'package:final_finesse/01_signUpScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -44,6 +44,6 @@ class MyApp extends StatelessWidget {
           fontFamily: ('Poppins'),
           useMaterial3: true,
         ),
-        home: LoginScreen());
+        home: WelcomeScreen());
   }
 }

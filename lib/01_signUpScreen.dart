@@ -1,12 +1,12 @@
 import 'package:final_finesse/03_personalDetail.dart';
-import 'package:final_finesse/loginScreen.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:flutter/material.dart';
 import '../Services/authentication.dart';
 import 'Widget/button.dart';
 import 'Widget/snack_bar.dart';
 import 'Widget/text_field.dart';
 import '10_home_screen.dart';
-import '01_loginScreen.dart';
+import '02_loginScreen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

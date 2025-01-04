@@ -174,7 +174,7 @@ class _ActivityLogState extends State<ActivityLog> {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "Upper Body Workout",
+                                "Abs Workout",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

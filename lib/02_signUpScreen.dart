@@ -1,4 +1,5 @@
 import 'package:final_finesse/03_personalDetail.dart';
+import 'package:final_finesse/loginScreen.dart';
 import 'package:flutter/material.dart';
 import '../Services/authentication.dart';
 import 'Widget/button.dart';
@@ -109,7 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => PersonalDetailsPage(),
+                          builder: (context) => LoginScreen(),
                         ),
                       );
                     },

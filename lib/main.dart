@@ -11,6 +11,7 @@ import 'package:final_finesse/20_groupChat.dart';
 import 'package:final_finesse/32_appointmentdone.dart';
 import 'package:final_finesse/31_fitness_appointmentbooking.dart';
 import 'package:final_finesse/30_google_map.dart';
+import 'package:final_finesse/loginScreen.dart';
 import 'package:final_finesse/navigation_menu.dart';
 import 'package:final_finesse/13_redeemPoints.dart';
 import 'package:final_finesse/12_videoInfoDUPE.dart';
@@ -43,6 +44,6 @@ class MyApp extends StatelessWidget {
           fontFamily: ('Poppins'),
           useMaterial3: true,
         ),
-        home: SignupScreen());
+        home: LoginScreen());
   }
 }

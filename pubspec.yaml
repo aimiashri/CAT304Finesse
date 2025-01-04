@@ -66,6 +66,7 @@ dev_dependencies:
 flutter:
   assets:
   - assets/img/logo_finesse.png
+  - assets/img/logo_finesse.png
   - assets/img/plank.png
   - assets/img/biceps_bg.png
   - assets/img/thighs.png

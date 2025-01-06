@@ -1,8 +1,9 @@
 import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/14_ViewVouchers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '04_profile_fill.dart';
-import 'ViewVouchers.dart';
+import '10.2_sub_plan_pg.dart';
 
 class UserAccountPage extends StatefulWidget {
   @override
@@ -158,7 +159,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   ListTile(
                     leading: const Icon(Icons.person, color: Colors.white),
                     title: const Text(
-                      "My Profile",
+                      "Profile",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
@@ -170,11 +171,11 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   ListTile(
                     leading: const Icon(Icons.subscriptions, color: Colors.white),
                     title: const Text(
-                      "My Subscription",
+                      "Subscription",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      // Navigate to subscription page
+                      Get.to(() => SubscriptionPlanPage());
                     },
                   ),
 
@@ -182,7 +183,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   ListTile(
                     leading: const Icon(Icons.card_giftcard, color: Colors.white),
                     title: const Text(
-                      "My Vouchers",
+                      "Vouchers",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
@@ -194,7 +195,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   ListTile(
                     leading: const Icon(Icons.flag, color: Colors.white),
                     title: const Text(
-                      "My Challenges",
+                      "Challenges",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
@@ -206,7 +207,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   ListTile(
                     leading: const Icon(Icons.security, color: Colors.white),
                     title: const Text(
-                      "My Security",
+                      "Security",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {

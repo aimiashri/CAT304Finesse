@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:final_finesse/11_activityLog.dart';
-import 'package:final_finesse/video_info.dart';
+import 'package:final_finesse/12_videoInfoDUPE.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 15,
                     color: Color(0xFF896CFE),
                     fontWeight: FontWeight.bold,
-                  ),
+                  ), 
                 ),
                 Expanded(child: Container()),
                 Text(
@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
-                      Get.to(() => VideoInfo());
+                      Get.to(() => VideoInfoDupe());
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 7,
                     ),
                     Text(
-                      "Legs Toning\nand Glutes Workout",
+                      "Abs Workout",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(width: 5),
                             Text(
-                              "20 mins",
+                              "25 mins",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ]),
                           child: InkWell(
                             onTap: () {
-                              Get.to(() => VideoInfo());
+                              Get.to(() => VideoInfoDupe());
                             },
                             child: Icon(Icons.play_circle_fill,
                                 color: Colors.white, size: 65),

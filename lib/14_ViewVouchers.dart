@@ -1,4 +1,4 @@
-import 'package:final_finesse/redeemPoints.dart';
+import 'package:final_finesse/13_redeemPoints.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

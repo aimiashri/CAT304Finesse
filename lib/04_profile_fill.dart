@@ -188,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                         child: const Text(
-                          'CONTINUE',
+                          'SAVE',
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,

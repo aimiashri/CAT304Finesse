@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:final_finesse/02_signUpScreen.dart';
-import '01_loginScreen.dart';
+import 'package:final_finesse/01_signUpScreen.dart';
+import '02_loginScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const loginScreen()));
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
             },
             child: Container(
               height: 53,
@@ -86,14 +86,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          //  const Text('Login with Social Media',style: TextStyle(
-          //      fontSize: 17,
-          //      color: Colors.white
-          //  ),),//
-          // const SizedBox(height: 12,),
-          //  const Image(image: AssetImage('assets/social.png'))
-        ]),
-      ),
-    );
+      ]),
+    ));
   }
 }

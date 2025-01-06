@@ -1,7 +1,8 @@
-import 'package:final_finesse/02_signUpScreen.dart';
+import 'package:final_finesse/01_signUpScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:final_finesse/03_personalDetail.dart';
+import 'package:final_finesse/LoginWithGoogle/google_auth.dart';
 import 'package:flutter/material.dart';
 import '../Services/authentication.dart';
 import 'package:final_finesse/ForgotPassword/forgot_password.dart';
@@ -62,7 +63,7 @@ class _SignupScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFB3A0FF),
       body: SafeArea(
           child: SizedBox(
@@ -111,7 +112,7 @@ class _SignupScreenState extends State<LoginScreen> {
                 style:
                     ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
                 onPressed: () async {
-                  // await FirebaseServices().signInWithGoogle();
+                  await FirebaseServices().signInWithGoogle();
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

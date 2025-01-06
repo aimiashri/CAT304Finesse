@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import '02_regScreen.dart';
+import '01_loginScreen.dart';
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     body: Container(
+       height: double.infinity,
+       width: double.infinity,
+       decoration: const BoxDecoration(
+         color: Colors.white, // Change this to your desired background color
+       ),
+       // decoration: const BoxDecoration(
+       //   gradient: LinearGradient(
+       //     colors: [
+       //       //Color(0xFF896CFE),
+       //       Color(0xFFE2F163),
+       //     ]
+       //   )
+       // ),
+       child: Column(
+         children: [
+           const Padding(
+             padding: EdgeInsets.only(top: 150, left: 50, right: 60, bottom: 5),
+             child: Image(image: AssetImage("assets/img/FINESSE_Logo.png")),
+           ),
+           const SizedBox(
+             height: 30,
+           ),
+           const Text('Start your Workout Journey Now',style: TextStyle(
+             fontFamily: "Poppins",
+             fontWeight: FontWeight.bold,
+             fontSize: 20,
+             color: Colors.black
+           ),),
+          const SizedBox(height: 30,),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const loginScreen()));
+            },
+            child: Container(
+              height: 53,
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: Colors.black),
+              ),
+              child: const Center(child: Text('SIGN IN',style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black
+              ),),),
+            ),
+          ),
+           const SizedBox(height: 30,),
+           GestureDetector(
+             onTap: (){
+               Navigator.push(context,
+                   MaterialPageRoute(builder: (context) => const RegScreen()));
+             },
+             child: Container(
+               height: 53,
+               width: 200,
+               decoration: BoxDecoration(
+                 color: Color(0xFFB3A0FF),
+                 borderRadius: BorderRadius.circular(30),
+                 border: Border.all(color: Colors.black),
+               ),
+               child: const Center(child: Text('SIGN UP',style: TextStyle(
+                   fontSize: 20,
+                   fontWeight: FontWeight.bold,
+                   color: Colors.black
+               ),),),
+             ),
+           ),
+           const Spacer(),
+          //  const Text('Login with Social Media',style: TextStyle(
+          //      fontSize: 17,
+          //      color: Colors.white
+          //  ),),//
+          // const SizedBox(height: 12,),
+          //  const Image(image: AssetImage('assets/social.png'))
+          ]
+       ),
+     ),
+
+    );
+  }
+}

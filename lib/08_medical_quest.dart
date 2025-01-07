@@ -652,12 +652,12 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => (),
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MedicalQuestionnairePage2(),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/02_loginScreen.dart';
+import 'package:final_finesse/20_challenges.dart';
 import 'package:flutter/material.dart';
 import '../Services/authentication.dart';
 import 'Widget/button.dart';
@@ -47,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
       //navigate to the next screen
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => PersonalDetailsPage(),
+          builder: (context) => Challenges(),
         ),
       );
     } else {

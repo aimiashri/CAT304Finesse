@@ -595,8 +595,18 @@ packages:
       sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
     version: "1.9.1"
   path_provider_linux:
+=======
+<<<<<<< HEAD
+    version: "1.9.1"
+  path_provider_linux:
+=======
+    version: "1.9.0"
+  pbkdf2ns:
+>>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
+>>>>>>> 72473105f9dea34275e1ea85e1b7a94aa0d881eb
     dependency: transitive
     description:
       name: path_provider_linux

@@ -112,7 +112,6 @@ packages:
       sha256: "511392330127add0b769b75a987850d136345d9227c6b94c96a04cf4a391bf78"
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
     version: "1.3.2"
   ffi:
     dependency: transitive
@@ -130,9 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
-=======
-    version: "1.3.1"
->>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
   firebase_auth:
     dependency: "direct main"
     description:

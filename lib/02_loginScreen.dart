@@ -1,4 +1,5 @@
 import 'package:final_finesse/01_signUpScreen.dart';
+import 'package:final_finesse/navigation_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:final_finesse/03_personalDetail.dart';
@@ -47,7 +48,7 @@ class _SignupScreenState extends State<LoginScreen> {
       //navigate to the home screen
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const NavigationMenu(),
         ),
       );
     } else {
@@ -116,7 +117,7 @@ class _SignupScreenState extends State<LoginScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
+                      builder: (context) => const NavigationMenu(),
                     ),
                   );
                 },

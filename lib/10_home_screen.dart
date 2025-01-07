@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:final_finesse/11_activityLog.dart';
 import 'package:final_finesse/12_videoInfoDUPE.dart';
+import 'package:final_finesse/20_challenges.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 15,
                     color: Color(0xFF896CFE),
                     fontWeight: FontWeight.bold,
-                  ), 
+                  ),
                 ),
                 Expanded(child: Container()),
                 Text(
@@ -191,68 +192,73 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
-              height: 180,
-              width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 14),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Color.fromARGB(255, 134, 144, 50),
-                          Color(0xFFE2F163),
-                        ]),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+            InkWell(
+              onTap: () {
+                Get.to(() => Challenges());
+              },
+              child: Container(
+                height: 180,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 14),
                       child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Weekly\nChallenge",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black,
+                        width: MediaQuery.of(context).size.width,
+                        height: 400,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Color.fromARGB(255, 134, 144, 50),
+                            Color(0xFFE2F163),
+                          ]),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Weekly\nChallenge",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "Plank with Hip Twist",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 14,
-                                        color: Colors.black,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Plank with Hip Twist",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.only(left:140),
-                                    //   child: Image(
-                                    //     image: AssetImage("assets/img/plank.png"),
-                                    //     alignment: Alignment.bottomRight,
-                                    //     ),
-                                    // )
-                                  ],
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(left:140),
+                                      //   child: Image(
+                                      //     image: AssetImage("assets/img/plank.png"),
+                                      //     alignment: Alignment.bottomRight,
+                                      //     ),
+                                      // )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 15),

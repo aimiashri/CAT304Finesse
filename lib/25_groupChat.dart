@@ -42,12 +42,12 @@ class _groupChatState extends State<groupChat> {
   gettingUserData() async {
     await HelperFunctions.getUserEmailFromSF().then((value) {
       setState(() {
-        email = value!;
+          email = value ?? "";
       });
     });
     await HelperFunctions.getUserNameFromSF().then((val) {
       setState(() {
-        userName = val!;
+        userName = val ?? "";
       });
     });
     // getting the list of snapshots in our stream

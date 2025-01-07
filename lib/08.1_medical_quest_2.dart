@@ -1,3 +1,4 @@
+import 'package:final_finesse/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import '08_medical_quest.dart';
 
@@ -300,7 +301,7 @@ class _MedicalQuestionnairePage2State extends State<MedicalQuestionnairePage2> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MedicalQuestionnairePage2(),
+                                  builder: (context) => NavigationMenu(),
                                 ),
                               );
                             },

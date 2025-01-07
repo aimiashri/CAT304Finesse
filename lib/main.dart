@@ -1,5 +1,4 @@
 import 'package:final_finesse/00_WelcomeScreen.dart';
-<<<<<<< HEAD
 import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/04_profile_fill.dart';
@@ -22,8 +21,6 @@ import 'package:final_finesse/12_videoInfoDUPE.dart';
 import 'package:final_finesse/27_chatPage.dart';
 import 'package:final_finesse/32_personal_trainer_detail.dart';
 import 'package:final_finesse/01_signUpScreen.dart';
-=======
->>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 //import 'package:final_finesse/video_info.dart';

@@ -71,8 +71,8 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                   'Lose Weight',
                   'Gain Weight',
                   'Muscle Mass Gain',
-                  'Shape Body',
-                  'Others'
+                  'Shape Body', // body toning
+                  'Others' // improve cardio, core strengthening, 
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

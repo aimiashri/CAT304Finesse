@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/navigation_menu.dart';
+=======
+>>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
 import 'package:flutter/material.dart';
 import '08_medical_quest.dart';
 
@@ -302,7 +305,11 @@ class _MedicalQuestionnairePage2State extends State<MedicalQuestionnairePage2> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
+<<<<<<< HEAD
                                   builder: (context) => NavigationMenu(),
+=======
+                                  builder: (context) => MedicalQuestionnairePage2(),
+>>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
                                 ),
                               );
                             },

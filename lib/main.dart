@@ -1,4 +1,5 @@
 import 'package:final_finesse/00_WelcomeScreen.dart';
+<<<<<<< HEAD
 import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/04_profile_fill.dart';
@@ -21,9 +22,15 @@ import 'package:final_finesse/12_videoInfoDUPE.dart';
 import 'package:final_finesse/27_chatPage.dart';
 import 'package:final_finesse/32_personal_trainer_detail.dart';
 import 'package:final_finesse/01_signUpScreen.dart';
+=======
+>>>>>>> 3cd8a783bcb9ae90760361b6c57941f6065ee388
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+//import 'package:final_finesse/video_info.dart';
 import 'package:video_player/video_player.dart';
+import '10_home_screen.dart';
+
+import '00_WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -44,11 +51,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: ('Poppins'),
-          useMaterial3: true,
-        ),
-        home: WelcomeScreen());
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: ('Poppins'),
+        useMaterial3: true,
+      ),
+      home: WelcomeScreen(),
+    );
   }
 }

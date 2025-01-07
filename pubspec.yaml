@@ -41,11 +41,13 @@ dependencies:
   geolocator: ^13.0.2 
   geocoding: ^3.0.0
   custom_info_window: ^1.0.1
-  rethink_db_ns: ^0.0.4
   firebase_core: ^3.9.0
   firebase_auth: ^5.3.4
+  firebase_database: ^11.2.0
   cloud_firestore: ^5.6.0
   google_sign_in: ^6.2.2
+  intl: ^0.19.0
+  shared_preferences: ^2.3.5
 
 
 dev_dependencies:
@@ -81,6 +83,14 @@ flutter:
   - assets/img/uniqloo.png
   - assets/img/barcode.png
   - assets/img/aeon.png
+  - assets/img/cycling_challenge.png
+  - assets/img/yoga_challenge.png
+  - assets/img/leg_challenge.png
+  - assets/img/cycling_large.png
+  - assets/img/yoga_large.png
+  - assets/img/leg_large.png
+  - assets/img/trophy_challenge.png
+  - assets/img/play_icon.png
   - json/info.json
   - json/videoinfo.json
 

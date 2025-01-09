@@ -6,8 +6,12 @@ import 'package:final_finesse/05_personalise_intro_pg.dart';
 import 'package:final_finesse/07_scanmedReport.dart';
 import 'package:final_finesse/10.2_sub_plan_pg.dart';
 import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/11_activityLog.dart';
 import 'package:final_finesse/14_ViewVouchers.dart';
+import 'package:final_finesse/15_Article1.dart';
+import 'package:final_finesse/16_Article2.dart';
+import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/20_challenges.dart';
 import 'package:final_finesse/25_groupChat.dart';
 import 'package:final_finesse/27_chatPage.dart';
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
         fontFamily: ('Poppins'),
         useMaterial3: true,
       ),
-      home: WelcomeScreen(),
+      home: SignupScreen(),
     );
   }
 }

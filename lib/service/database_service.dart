@@ -9,6 +9,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("users");
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
+  final CollectionReference personalDetailsCollection =
+      FirebaseFirestore.instance.collection("user_personalDetails");
 
   // saving the userdata
   Future savingUserData(String fullName, String email) async {
@@ -20,11 +22,86 @@ class DatabaseService {
     });
   }
 
+  // Saving personal details
+  Future savePersonalDetails(String gender, int age, double weight, double height, String race) async {
+    return await personalDetailsCollection.doc(uid).set({
+      "gender": gender,
+      "age": age,
+      "weight": weight,
+      "height": height,
+      "race": race,
+      "uid": uid, // Foreign key for linking with users
+    });
+  }
+
+  // Link personal details to the user
+  Future linkPersonalDetails() async {
+    return await userCollection.doc(uid).update({
+      "personalDetailsId": uid, // Linking by using the same document ID
+    });
+  }
+
   // getting user data
   Future gettingUserData(String email) async {
     QuerySnapshot snapshot =
         await userCollection.where("email", isEqualTo: email).get();
     return snapshot;
+  }
+
+  // Save user profile data
+  Future saveUserProfile({
+    required String fullName,
+    required String nickname,
+    required String email,
+    required String region,
+    required String phone,
+  }) async {
+    final CollectionReference userProfileCollection =
+        FirebaseFirestore.instance.collection("user_profile");
+
+    return await userProfileCollection.doc(uid).set({
+      "fullName": fullName,
+      "nickname": nickname,
+      "email": email,
+      "region": region,
+      "phone": phone,
+      "uid": uid,
+    });
+  }
+
+  // Link user profile to the users collection
+  Future linkUserProfile() async {
+    DocumentReference userDocumentReference = userCollection.doc(uid);
+    return await userDocumentReference.update({
+      "profileLinked": true,
+      "profileId": uid, // Assuming profile ID matches UID
+    });
+  }
+
+  // Save user personalization answers
+  Future saveUserPersonalisation({
+    required String goal,
+    required String workout,
+    required String activityLevel,
+  }) async {
+    final CollectionReference userPersonaliseQuestCollection =
+        FirebaseFirestore.instance.collection("user_personaliseQuest");
+
+    return await userPersonaliseQuestCollection.doc(uid).set({
+      "goal": goal,
+      "preferredWorkout": workout,
+      "activityLevel": activityLevel,
+      "uid": uid,
+    });
+  }
+
+  // Link user personalization answers to the users collection
+  Future linkUserPersonalisation() async {
+    DocumentReference userDocumentReference = userCollection.doc(uid);
+    return await userDocumentReference.update({
+      "personalisationLinked": true,
+      "personalisationId": uid, // Assuming personalisation ID matches UID
+    });
   }
 
   // get user groups

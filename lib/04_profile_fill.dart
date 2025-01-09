@@ -1,4 +1,7 @@
+import 'package:final_finesse/service/database_service.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import '05_personalise_intro_pg.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -10,7 +13,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _nameController = TextEditingController();
   final _nicknameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _addressController = TextEditingController();
+  final _regionController = TextEditingController();
   final _phoneController = TextEditingController();
 
   @override
@@ -119,11 +122,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    // Residential Address Field
+                    // Region Field
                     TextField(
-                      controller: _addressController,
+                      controller: _regionController,
                       decoration: InputDecoration(
-                        labelText: 'Residential Address',
+                        labelText: 'Region',
                         labelStyle: TextStyle(
                           color: Color(0xFF896CFE),
                           fontWeight: FontWeight.bold,
@@ -173,12 +176,58 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () async {
+                          try {
+                            // Validate inputs
+                            if (_nameController.text.isEmpty ||
+                                _nicknameController.text.isEmpty ||
+                                _emailController.text.isEmpty ||
+                                _regionController.text.isEmpty ||
+                                _phoneController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Please fill in all fields")),
+                              );
+                              return;
+                            }
+
+                            // Get the current user's UID
+                            String? uid = FirebaseAuth.instance.currentUser?.uid;
+
+                            if (uid == null || uid.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("User is not logged in")),
+                              );
+                              return;
+                            }
+
+                            // Instantiate the DatabaseService
+                            DatabaseService databaseService = DatabaseService(uid: uid);
+
+                            // Save user profile
+                            await databaseService.saveUserProfile(
+                              fullName: _nameController.text,
+                              nickname: _nicknameController.text,
+                              email: _emailController.text,
+                              region: _regionController.text,
+                              phone: _phoneController.text,
+                            );
+
+                            // Link the user profile to the users collection
+                            await databaseService.linkUserProfile();
+
+                            // Navigate to the next page or show confirmation
+                            Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => PersonaliseIntroPage())
-                          );// Add your save logic here
+                              MaterialPageRoute(builder: (context) => PersonaliseIntroPage()),
+                            );
+                          } catch (e) {
+                            // Handle errors (e.g., show a snackbar)
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Failed to save profile: $e")),
+                            );
+                          }
                         },
+
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
                           elevation: 0,

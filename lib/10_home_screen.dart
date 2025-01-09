@@ -1,6 +1,9 @@
-import 'dart:convert';
 import 'package:final_finesse/11_activityLog.dart';
 import 'package:final_finesse/12_videoInfoDUPE.dart';
+import 'package:final_finesse/15_Article1.dart';
+import 'package:final_finesse/16_Article2.dart';
+import 'package:final_finesse/17_Article3.dart';
+import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +17,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List info = [];
-  _initData() {
-    DefaultAssetBundle.of(context).loadString("json/info.json").then((value) {
-      setState(() {
-        info = jsonDecode(value);
-      });
-    });
-  }
+  final List<Map<String, String>> items = [
+    {
+      'title': 'Getting Optimal Health',
+      'imageUrl':
+          'assets/img/food.jpg',
+    },
+    {
+      'title': 'Busy Schedule Eating',
+      'imageUrl':
+          'assets/img/busyeating.jpg',
+    },
+    {
+      'title': 'Balanced Nutrition',
+      'imageUrl':
+          'assets/img/balanced.jpg',
+    },
+    {
+      'title': 'Role of Regular Exercise',
+      'imageUrl':
+          'assets/img/exercise.webp',
+    },
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _initData();
-  }
+  List<String> title= [
+    'Healthy Eating',
+    'Morning Yoga',
+    'Cardio Workout',
+    'Hydration Tips',
+  ];
+
+  List<Widget> route = [
+    Article1(),
+    Article2(),
+    Article3(),
+    Article4(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -196,75 +221,71 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Get.to(() => Challenges());
               },
-              child: Container(
-                height: 180,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 14),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 400,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                            Color.fromARGB(255, 134, 144, 50),
-                            Color(0xFFE2F163),
-                          ]),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  height: 180,
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 14),
                         child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Weekly\nChallenge",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.black,
+                          width: MediaQuery.of(context).size.width,
+                          height: 400,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              Color.fromARGB(255, 134, 144, 50),
+                              Color(0xFFE2F163),
+                            ]),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Weekly\nChallenge",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        "Plank with Hip Twist",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14,
-                                          color: Colors.black,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "Plank with Hip Twist",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
                                         ),
-                                      ),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(left:140),
-                                      //   child: Image(
-                                      //     image: AssetImage("assets/img/plank.png"),
-                                      //     alignment: Alignment.bottomRight,
-                                      //     ),
-                                      // )
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 25),
             Row(
               children: [
-                Text("Area of Focus",
+                Text("Tips and Articles",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -275,91 +296,53 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             Expanded(
-                child: OverflowBox(
-              maxWidth: MediaQuery.of(context).size.width,
-              child: MediaQuery.removePadding(
-                removeTop: true,
-                context: context,
-                child: ListView.builder(
-                    itemCount: (info.length.toDouble() / 2).toInt(), //2
-                    itemBuilder: (_, i) {
-                      int a = 2 * i; //0, 2
-                      int b = 2 * i + 1; //1, 3
-                      return Row(
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Get.to(() => Article1());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 5, bottom: 15),
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A2A),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
                         children: [
                           Container(
-                              width:
-                                  (MediaQuery.of(context).size.width - 90) / 2,
-                              height: 130,
-                              margin: EdgeInsets.only(
-                                  left: 35, bottom: 15, top: 15),
-                              padding: EdgeInsets.only(bottom: 5),
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF896CFE),
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                      image: AssetImage(info[a]['img'])),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      offset: Offset(5, 5),
-                                      color: Colors.white.withOpacity(0.4),
-                                    ),
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      offset: Offset(-5, -5),
-                                      color: Colors.white.withOpacity(0.4),
-                                    ),
-                                  ]),
-                              child: Center(
-                                  child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(info[a]["title"],
-                                    style: TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
-                                    )),
-                              ))),
-                          Container(
-                              width:
-                                  (MediaQuery.of(context).size.width - 90) / 2,
-                              height: 130,
-                              margin: EdgeInsets.only(
-                                  left: 35, bottom: 15, top: 15),
-                              padding: EdgeInsets.only(bottom: 5),
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF896CFE),
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                      image: AssetImage(info[b]['img'])),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      offset: Offset(5, 5),
-                                      color: Colors.white.withOpacity(0.4),
-                                    ),
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      offset: Offset(-5, -5),
-                                      color: Colors.white.withOpacity(0.4),
-                                    ),
-                                  ]),
-                              child: Center(
-                                  child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(info[b]["title"],
-                                    style: TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
-                                    )),
-                              )))
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                image: AssetImage(items[index]['imageUrl']!),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            items[index]['title']!,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
-                      );
-                    }),
+                      ),
+                    ),
+                  );
+                },
               ),
-            )),
+            ),
           ],
         ),
       ),

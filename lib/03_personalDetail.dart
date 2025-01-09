@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_finesse/service/database_service.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '04_profile_fill.dart';
 
 class PersonalDetailsPage extends StatefulWidget {
@@ -182,11 +185,37 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                           ),
                         ),
                         child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ProfilePage())
-                            );// Add your save logic here
+                          onPressed: () async {
+                            try {
+                              // Ensure you retrieve the UID from FirebaseAuth
+                              String? uid = FirebaseAuth.instance.currentUser?.uid;
+
+                              if (uid == null || uid.isEmpty) {
+                                throw Exception("User is not logged in or UID is missing");
+                              }
+
+                              // Collect user inputs
+                              String gender = selectedGender;
+                              int age = int.parse(ageController.text);
+                              double weight = double.parse(weightController.text);
+                              double height = double.parse(heightController.text);
+                              String race = raceController.text;
+
+                              // Save personal details in Firebase
+                              DatabaseService databaseService = DatabaseService(uid: uid); // Replace with actual user ID
+                              await databaseService.savePersonalDetails(gender, age, weight, height, race);
+
+                              // Link the personal details to the user's main document
+                              await databaseService.linkPersonalDetails();
+
+                              // Navigate to the next page
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+                            } catch (e) {
+                              // Handle errors (e.g., show a snackbar)
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Failed to save details: $e")),
+                              );
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
@@ -214,5 +243,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    ageController.dispose();
+    weightController.dispose();
+    heightController.dispose();
+    raceController.dispose();
+    super.dispose();
   }
 }

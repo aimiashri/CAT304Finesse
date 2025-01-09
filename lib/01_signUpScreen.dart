@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
       //navigate to the next screen
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => Challenges(),
+          builder: (context) => PersonalDetailsPage(),
         ),
       );
     } else {

@@ -1,6 +1,8 @@
+import 'package:final_finesse/service/database_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '05_personalise_intro_pg.dart';
-import '07_scanmedReport.dart'; // Import the MedicalReportScanPage
+import '07_scanmedReport.dart'; 
 
 class PersonaliseQuestionsPage extends StatefulWidget {
   @override
@@ -157,20 +159,52 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                     color: Colors.white, // Button background color
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MedicalReportScanPage()),
-                      );
+                    onPressed: () async {
+                      try {
+                        // Validate inputs
+                        if (_selectedGoal == null || _selectedWorkout == null || _selectedActivityLevel == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Please select all options")),
+                          );
+                          return;
+                        }
+
+                        // Get the current user's UID
+                        String? uid = FirebaseAuth.instance.currentUser?.uid;
+
+                        if (uid == null || uid.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("User is not logged in")),
+                          );
+                          return;
+                        }
+
+                        // Instantiate the DatabaseService
+                        DatabaseService databaseService = DatabaseService(uid: uid);
+
+                        // Save user personalization answers
+                        await databaseService.saveUserPersonalisation(
+                          goal: _selectedGoal!,
+                          workout: _selectedWorkout!,
+                          activityLevel: _selectedActivityLevel!,
+                        );
+
+                        // Link personalization answers to the users collection
+                        await databaseService.linkUserPersonalisation();
+
+                        // Navigate to the next page (MedicalReportScanPage)
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MedicalReportScanPage()),
+                        );
+                      } catch (e) {
+                        // Handle errors (e.g., show a snackbar)
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Failed to save personalisation: $e")),
+                        );
+                      }
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
+
                     child: Text(
                       'CONTINUE',
                       style: TextStyle(

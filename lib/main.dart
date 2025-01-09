@@ -30,8 +30,6 @@ import 'package:get/get.dart';
 //import 'package:final_finesse/video_info.dart';
 import 'package:video_player/video_player.dart';
 import '10_home_screen.dart';
-
-import '00_WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';

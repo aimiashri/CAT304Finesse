@@ -73,8 +73,7 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                   'Lose Weight',
                   'Gain Weight',
                   'Muscle Mass Gain',
-                  'Shape Body', // body toning
-                  'Others' // improve cardio, core strengthening, 
+                  'Shape Body' // body toning 
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -104,9 +103,8 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                 items: [
                   'Yoga',
                   'Pilates',
-                  'Balance Exercises',
-                  'Cardio',
-                  'Others'
+                  'Muscle Mass Gain Exercises',
+                  'Cardio'
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

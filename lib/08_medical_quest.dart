@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_finesse/service/database_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '07_scanmedReport.dart';
 import '08.1_medical_quest_2.dart';
@@ -8,7 +11,9 @@ class MedicalQuestionnairePage extends StatefulWidget {
 }
 
 class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
-  final List<String> healthConditions = [
+  
+  // Variables to hold user's responses
+  List<String> healthConditions = [
     'High blood pressure',
     'Heart disease',
     'Diabetes',
@@ -18,6 +23,21 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
     'Others',
     'None of the above',
   ];
+  String otherHealthCondition = '';
+  List<String> selectedConditions = [];
+  bool? hasChestPain;
+  bool? hasHeartCondition ;
+  bool? hasOtherMedicalCondition;
+  String otherMedicalCondition = '';
+  bool? hasInjuries;
+  String injuryDetails = '';
+  bool? hasMobilityIssues;
+  String mobilityDetails = '';
+  String healthStatus = '';
+  String fatigueFrequency = '';
+  bool? hasTestedRecently;
+  String testDetails = '';
+  bool? hasShortnessOfBreath;
 
   final TextEditingController _otherHealthConditionController = TextEditingController();
   final TextEditingController _injuryDetailsController = TextEditingController();
@@ -25,24 +45,49 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   final TextEditingController _otherMedicalConditionController = TextEditingController();
   final TextEditingController _testDetailsController = TextEditingController();
 
-  List<String> selectedHealthConditions = [];
-  //bool hasInjuries = false;
-  //bool hasChestPain = false;
-  //bool hasHeartCondition = false;
-  //bool hasOtherMedicalCondition = false;
-  //bool hasMobilityIssues = false;
-  //bool hasTestedRecently = false;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;  // Replace with actual user ID from Firebase Auth
 
-  String? healthStatus;
-  String? fatigueFrequency;
-  
-  bool? hasChestPain;
-  bool? hasHeartCondition;
-  bool? hasOtherMedicalCondition;
-  bool? hasInjuries;
-  bool? hasMobilityIssues;
-  bool? hasTestedRecently;
-  bool? hasShortnessOfBreath;
+  late DatabaseService _databaseService;  // Use the actual user UID here
+
+  @override
+  void initState() {
+    super.initState();
+    _databaseService = DatabaseService(uid: uid);  // Initialize _databaseService here
+  }
+
+  // Function to save the data
+  Future<void> saveMedicalData() async {
+    try {
+      await _databaseService.saveMedicalData(
+        healthConditions: healthConditions.join(', '), // Safely joining the list
+        otherHealthCondition: _otherHealthConditionController.text,
+        hasChestPain: hasChestPain ?? false,
+        hasHeartCondition: hasHeartCondition ?? false,
+        hasOtherMedicalCondition: hasOtherMedicalCondition ?? false,
+        otherMedicalCondition: _otherMedicalConditionController.text,
+        hasInjuries: hasInjuries ?? false,
+        injuryDetails: _injuryDetailsController.text,
+        hasMobilityIssues: hasMobilityIssues ?? false,
+        mobilityDetails: _mobilityDetailsController.text,
+        healthStatus: healthStatus,
+        fatigueFrequency: fatigueFrequency,
+        hasTestedRecently: hasTestedRecently ?? false,
+        testDetails: _testDetailsController.text,
+        hasShortnessOfBreath: hasShortnessOfBreath ?? false,
+      );
+
+      // Optionally, you can navigate to the next page after saving the data
+      print("Medical data saved successfully.");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MedicalQuestionnairePage2(),
+        ),
+      );
+    } catch (e) {
+      print("Error saving medical data: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,56 +133,64 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Do you have any of the following health conditions?',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      'Do you have any of the following health conditions?',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 10.0,
-                        children: healthConditions.map((condition) {
-                          return ChoiceChip(
-                            label: Text(
-                              condition,
-                              style: TextStyle(fontSize: 12, color: selectedHealthConditions.contains(condition) ? Colors.white : Colors.black),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 10.0,
+                      children: healthConditions.map((condition) {
+                        return ChoiceChip(
+                          label: Text(
+                            condition,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: selectedConditions.contains(condition)
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
-                            selected: selectedHealthConditions.contains(condition),
-                            onSelected: (isSelected) {
-                              setState(() {
-                                if (condition == 'None of the above' && isSelected) {
-                                  selectedHealthConditions.clear();
-                                }
-                                if (isSelected) {
-                                  selectedHealthConditions.add(condition);
-                                  if (condition == 'None of the above') {
-                                    selectedHealthConditions = ['None of the above'];
-                                  }
-                                } else {
-                                  selectedHealthConditions.remove(condition);
-                                }                                
-                              });
-                            },
-                            selectedColor: Color(0xFF896CFE),  // Selected chip color
-                            backgroundColor: Colors.white, // Unselected chip color
-                          );
-                        }).toList(),
-                      ),
-                      if (selectedHealthConditions.contains('Others'))
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
-                          child: TextField(
-                            controller: _otherHealthConditionController,
-                            decoration: const InputDecoration(
-                              labelText: 'Specify health issue',
-                              labelStyle: TextStyle(color: Colors.white),
-                            ),
-                            style: const TextStyle(color: Colors.white),
                           ),
+                          selected: selectedConditions.contains(condition),
+                          onSelected: (isSelected) {
+                            setState(() {
+                              if (condition == 'None of the above' && isSelected) {
+                                // Clear all selections and only select "None of the above"
+                                selectedConditions.clear();
+                                selectedConditions.add('None of the above');
+                              } else if (condition != 'None of the above') {
+                                // If any other condition is selected, unselect "None of the above"
+                                selectedConditions.remove('None of the above');
+                                if (isSelected) {
+                                  selectedConditions.add(condition);
+                                } else {
+                                  selectedConditions.remove(condition);
+                                }
+                              }
+                            });
+                          },
+                          selectedColor: Color(0xFF896CFE),  // Selected chip color
+                          backgroundColor: Colors.white,    // Unselected chip color
+                        );
+                      }).toList(),
+                    ),
+                    if (selectedConditions.contains('Others'))
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: TextField(
+                          controller: _otherHealthConditionController,
+                          decoration: const InputDecoration(
+                            labelText: 'Specify health issue',
+                            labelStyle: TextStyle(color: Colors.white),
+                          ),
+                          style: const TextStyle(color: Colors.white),
                         ),
+                      ),
+
 
                       const SizedBox(height: 20),
                       const Text(
@@ -183,6 +236,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                           ),
                         ],
                       ),
+
                       const SizedBox(height: 20),
                       const Text(
                         'Have you ever been diagnosed with any heart-related conditions by a doctor?',
@@ -250,7 +304,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                               groupValue: hasOtherMedicalCondition,
                               onChanged: (value) {
                                 setState(() {
-                                  hasOtherMedicalCondition = value;
+                                  hasOtherMedicalCondition = value!;
                                 });
                               },
                             ),
@@ -364,7 +418,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                               groupValue: hasMobilityIssues,
                               onChanged: (value) {
                                 setState(() {
-                                  hasMobilityIssues = value;
+                                  hasMobilityIssues = value!;
                                 });
                               },
                             ),
@@ -420,7 +474,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: healthStatus == 'Excellent',
                             onSelected: (isSelected) {
                               setState(() {
-                                healthStatus = isSelected ? 'Excellent' : null;
+                                healthStatus = (isSelected ? 'Excellent' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),  // Selected chip color
@@ -434,7 +488,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: healthStatus == 'Good',
                             onSelected: (isSelected) {
                               setState(() {
-                                healthStatus = isSelected ? 'Good' : null;
+                                healthStatus = (isSelected ? 'Good' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -448,7 +502,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: healthStatus == 'Fair',
                             onSelected: (isSelected) {
                               setState(() {
-                                healthStatus = isSelected ? 'Fair' : null;
+                                healthStatus = (isSelected ? 'Fair' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -462,7 +516,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: healthStatus == 'Poor',
                             onSelected: (isSelected) {
                               setState(() {
-                                healthStatus = isSelected ? 'Poor' : null;
+                                healthStatus = (isSelected ? 'Poor' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -537,7 +591,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: fatigueFrequency == 'Rarely',
                             onSelected: (isSelected) {
                               setState(() {
-                                fatigueFrequency = isSelected ? 'Rarely' : null;
+                                fatigueFrequency = (isSelected ? 'Rarely' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -551,7 +605,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: fatigueFrequency == 'Occasionally',
                             onSelected: (isSelected) {
                               setState(() {
-                                fatigueFrequency = isSelected ? 'Occasionally' : null;
+                                fatigueFrequency = (isSelected ? 'Occasionally' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -565,7 +619,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: fatigueFrequency == 'Frequently',
                             onSelected: (isSelected) {
                               setState(() {
-                                fatigueFrequency = isSelected ? 'Frequently' : null;
+                                fatigueFrequency = (isSelected ? 'Frequently' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -579,7 +633,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                             selected: fatigueFrequency == 'Always',
                             onSelected: (isSelected) {
                               setState(() {
-                                fatigueFrequency = isSelected ? 'Always' : null;
+                                fatigueFrequency = (isSelected ? 'Always' : null)!;
                               });
                             },
                             selectedColor: Color(0xFF896CFE),
@@ -651,13 +705,8 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                           width: 200,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MedicalQuestionnairePage2(),
-                                ),
-                              );
+                            onPressed: () async {
+                              saveMedicalData();  // Call to save medical data to Firestore
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,

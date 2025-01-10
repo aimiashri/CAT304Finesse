@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
   final String? uid;
@@ -11,6 +12,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("groups");
   final CollectionReference personalDetailsCollection =
       FirebaseFirestore.instance.collection("user_personalDetails");
+  final CollectionReference userMedicalQuestCollection =
+      FirebaseFirestore.instance.collection("user_medicalQuest");
 
   // saving the userdata
   Future savingUserData(String fullName, String email) async {
@@ -101,6 +104,94 @@ class DatabaseService {
     return await userDocumentReference.update({
       "personalisationLinked": true,
       "personalisationId": uid, // Assuming personalisation ID matches UID
+    });
+  }
+
+  // saving medical questionnaire data
+  Future saveMedicalData({
+    required String healthConditions,
+    required String otherHealthCondition,
+    required bool hasChestPain,
+    required bool hasHeartCondition,
+    required bool hasOtherMedicalCondition,
+    required String otherMedicalCondition,
+    required bool hasInjuries,
+    required String injuryDetails,
+    required bool hasMobilityIssues,
+    required String mobilityDetails,
+    required String healthStatus,
+    required String fatigueFrequency,
+    required bool hasTestedRecently,
+    required String testDetails,
+    required bool hasShortnessOfBreath, 
+  }) async {
+    try {
+      // Store medical questionnaire data in the 'user_medicalQuest' collection
+      await userMedicalQuestCollection.doc(uid).set({
+        "healthConditions": healthConditions,
+        "otherHealthCondition": otherHealthCondition,
+        "hasChestPain": hasChestPain,
+        "hasHeartCondition": hasHeartCondition,
+        "hasOtherMedicalCondition": hasOtherMedicalCondition,
+        "otherMedicalCondition": otherMedicalCondition,
+        "hasInjuries": hasInjuries,
+        "injuryDetails": injuryDetails,
+        "hasMobilityIssues": hasMobilityIssues,
+        "mobilityDetails": mobilityDetails,
+        "healthStatus": healthStatus,
+        "fatigueFrequency": fatigueFrequency,
+        "hasTestedRecently": hasTestedRecently,
+        "testDetails": testDetails,
+        "hasShortnessOfBreath": hasShortnessOfBreath,
+        "uid": uid,
+      });
+
+      // Link the medical answers to the 'users' collection
+      await linkMedicalAnswersToUser();
+
+      print("Medical data saved and linked successfully.");
+    } catch (e) {
+      print("Error saving medical data: $e");
+    }
+  }
+
+  Future<void> saveAdditionalMedicalData({
+    required bool? advisedToAvoidPhysicalActivity,
+    required bool? takingMedications,
+    required String? medicationDetails,
+    required bool? experiencedDizziness,
+    required bool? confirmAccuracy,
+    required bool? giveConsent,
+  }) async {
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid; // Ensure user is authenticated
+      if (userId != null) {
+        final data = {
+          'advisedToAvoidPhysicalActivity': advisedToAvoidPhysicalActivity,
+          'takingMedications': takingMedications,
+          'medicationDetails': medicationDetails,
+          'experiencedDizziness': experiencedDizziness,
+          'confirmAccuracy': confirmAccuracy,
+          'giveConsent': giveConsent,
+          'timestamp': FieldValue.serverTimestamp(), // Add timestamp for record tracking
+        };
+
+        await FirebaseFirestore.instance
+            .collection('user_medicalQuest')
+            .doc(userId)
+            .update(data); // Use `update` to append to the existing record
+      }
+    } catch (e) {
+      print('Error saving additional medical data: $e');
+    }
+  }
+
+  // Link medical answers to the 'users' collection
+  Future linkMedicalAnswersToUser() async {
+    DocumentReference userDocumentReference = userCollection.doc(uid);
+    return await userDocumentReference.update({
+      "medicalAnswersLinked": true,
+      "medicalAnswersId": uid, // Use the user UID as the medicalAnswersId
     });
   }
 

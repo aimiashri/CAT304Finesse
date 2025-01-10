@@ -1,4 +1,6 @@
 import 'package:final_finesse/navigation_menu.dart';
+import 'package:final_finesse/service/database_service.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '08_medical_quest.dart';
 
@@ -10,12 +12,12 @@ class MedicalQuestionnairePage2 extends StatefulWidget {
 class _MedicalQuestionnairePage2State extends State<MedicalQuestionnairePage2> {
   final TextEditingController _medicationDetailsController = TextEditingController();
 
-  bool? advisedToAvoidPhysicalActivity; // Change to bool?
+  bool? advisedToAvoidPhysicalActivity;
   bool? takingMedications; 
   bool? experiencedDizziness; 
   bool? confirmAccuracy; 
   bool? giveConsent;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,14 +299,63 @@ class _MedicalQuestionnairePage2State extends State<MedicalQuestionnairePage2> {
                           width: 200,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NavigationMenu(),
-                                ),
-                              );
-                            },
+                            onPressed: () async {
+                              if (confirmAccuracy == true && giveConsent == true) {
+                                try {
+                                  // Save the additional data
+                                  await DatabaseService().saveAdditionalMedicalData(
+                                    advisedToAvoidPhysicalActivity: advisedToAvoidPhysicalActivity,
+                                    takingMedications: takingMedications,
+                                    medicationDetails: takingMedications == true
+                                        ? _medicationDetailsController.text
+                                        : null,
+                                    experiencedDizziness: experiencedDizziness,
+                                    confirmAccuracy: confirmAccuracy,
+                                    giveConsent: giveConsent,
+                                  );
+
+                                  // Navigate to the next page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => NavigationMenu(),
+                                    ),
+                                  );
+                                } catch (e) {
+                                  // Show an error dialog if saving fails
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Error'),
+                                      content: const Text('Failed to save your responses. Please try again.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(context),
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                              } else {
+                                // Show an error if confirmation or consent is not provided
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Incomplete Form'),
+                                    content: const Text(
+                                        'Please confirm the accuracy of your responses and provide consent to proceed.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            },  
+
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               shape: RoundedRectangleBorder(

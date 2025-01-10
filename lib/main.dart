@@ -4,6 +4,7 @@ import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/04_profile_fill.dart';
 import 'package:final_finesse/05_personalise_intro_pg.dart';
 import 'package:final_finesse/07_scanmedReport.dart';
+import 'package:final_finesse/08_medical_quest.dart';
 import 'package:final_finesse/10.2_sub_plan_pg.dart';
 import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/11_activityLog.dart';

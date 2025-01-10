@@ -91,6 +91,10 @@ flutter:
   - assets/img/leg_large.png
   - assets/img/trophy_challenge.png
   - assets/img/play_icon.png
+  - assets/img/food.jpg
+  - assets/img/busyeating.jpg
+  - assets/img/exercise.webp
+  - assets/img/balanced.jpg
   - json/info.json
   - json/videoinfo.json
 

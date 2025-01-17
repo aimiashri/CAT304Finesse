@@ -1,8 +1,8 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '04_profile_fill.dart';
+import '10.1_user_acc_pg.dart'; // Import the UserAccountPage class
 
 class PersonalDetailsPage extends StatefulWidget {
   @override
@@ -17,8 +17,56 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   TextEditingController raceController = TextEditingController();
 
   @override
+  void dispose() {
+    ageController.dispose();
+    weightController.dispose();
+    heightController.dispose();
+    raceController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF1E1E1E),
+                Color(0xFF896CFE),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        title: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UserAccountPage()),
+            );
+          },
+          child: Row(
+            children: const [
+              Icon(Icons.arrow_back_ios, size:18, color: Colors.white),
+              SizedBox(width: 8),
+              Text(
+                'Personal Details', 
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                )
+              ),
+            ],
+          ),
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Stack(
         children: [
           Container(
@@ -39,8 +87,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold
-                ),
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -50,8 +97,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)
-                ),
+                    topRight: Radius.circular(40)),
                 color: Colors.white,
               ),
               height: double.infinity,
@@ -105,7 +151,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                           color: Color(0xFF896CFE),
                           fontWeight: FontWeight.bold,
                         ),
-                        suffixIcon: Icon(Icons.calendar_today, color: Colors.grey),
+                        suffixIcon:
+                            Icon(Icons.calendar_today, color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xFF896CFE)),
                         ),
@@ -124,7 +171,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                           color: Color(0xFF896CFE),
                           fontWeight: FontWeight.bold,
                         ),
-                        suffixIcon: Icon(Icons.monitor_weight, color: Colors.grey),
+                        suffixIcon:
+                            Icon(Icons.monitor_weight, color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xFF896CFE)),
                         ),
@@ -202,14 +250,19 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                               String race = raceController.text;
 
                               // Save personal details in Firebase
-                              DatabaseService databaseService = DatabaseService(uid: uid); // Replace with actual user ID
-                              await databaseService.savePersonalDetails(gender, age, weight, height, race);
+                              DatabaseService databaseService =
+                                  DatabaseService(uid: uid); // Replace with actual user ID
+                              await databaseService.savePersonalDetails(
+                                  gender, age, weight, height, race);
 
                               // Link the personal details to the user's main document
                               await databaseService.linkPersonalDetails();
 
                               // Navigate to the next page
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProfilePage()));
                             } catch (e) {
                               // Handle errors (e.g., show a snackbar)
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -243,14 +296,5 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    ageController.dispose();
-    weightController.dispose();
-    heightController.dispose();
-    raceController.dispose();
-    super.dispose();
   }
 }

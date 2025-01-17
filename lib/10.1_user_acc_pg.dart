@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/10_home_screen.dart';
+import 'package:final_finesse/Services/authentication.dart';
 import 'package:final_finesse/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import '04_profile_fill.dart';
 import '10.2_sub_plan_pg.dart';
 import '00_WelcomeScreen.dart';
-import '35_viewappointment.dart'; 
+import '35_viewappointment.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserAccountPage extends StatefulWidget {
@@ -32,22 +34,25 @@ class _UserAccountPageState extends State<UserAccountPage> {
     try {
       // Get user ID from SharedPreferences
       final prefs = await SharedPreferences.getInstance();
-      uid = prefs.getString('uid'); // Assume 'uid' is saved in SharedPreferences
+      uid =
+          prefs.getString('uid'); // Assume 'uid' is saved in SharedPreferences
 
       if (uid != null) {
         print("User ID: $uid"); // Debugging line
 
         // Fetch user data from the 'user_profile' collection
-        DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
+        DocumentSnapshot userProfileCollection = await FirebaseFirestore
+            .instance
             .collection('user_profile')
             .doc(uid)
             .get();
 
         if (userProfileCollection.exists) {
           print("User profile document exists"); // Debugging line
-          
+
           setState(() {
-            userNickname = userProfileCollection['nickname'] ?? 'No nickname'; // Update nickname
+            userNickname = userProfileCollection['nickname'] ??
+                'No nickname'; // Update nickname
           });
         } else {
           print("User profile document does not exist"); // Debugging line
@@ -94,13 +99,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
                   },
-                  child: const Icon(Icons.arrow_back_ios, size: 18, color: Colors.white),
+                  child: const Icon(Icons.arrow_back_ios,
+                      size: 18, color: Colors.white),
                 ),
                 const SizedBox(width: 10),
                 const Text(
@@ -113,32 +119,33 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 ),
               ],
             ),
-            
             const SizedBox(height: 30),
             InkWell(
               onTap: () async {
                 // Add profile picture
-                final picture = await ImagePicker().pickImage(source: ImageSource.gallery);
+                final picture =
+                    await ImagePicker().pickImage(source: ImageSource.gallery);
                 if (picture != null) {
                   image = File(picture.path);
                   setState(() {});
                 }
               },
-              child: image == null? const CircleAvatar(
-                radius: 90,
-                child: Icon(
-                  Icons.camera_alt, 
-                  size: 50,
-                ),
-              ): ClipOval(
-                child: Image.file(
-                  image!,
-                  height: 110,
-                  width: 110,
-                  fit: BoxFit.cover,
-                  )),
+              child: image == null
+                  ? const CircleAvatar(
+                      radius: 90,
+                      child: Icon(
+                        Icons.camera_alt,
+                        size: 50,
+                      ),
+                    )
+                  : ClipOval(
+                      child: Image.file(
+                      image!,
+                      height: 110,
+                      width: 110,
+                      fit: BoxFit.cover,
+                    )),
             ),
-            
             const SizedBox(height: 15),
             Text(
               userNickname = 'Nana',
@@ -168,12 +175,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        TextEditingController bioController = TextEditingController(text: userBio);
+                        TextEditingController bioController =
+                            TextEditingController(text: userBio);
                         return AlertDialog(
                           title: const Text("Edit Bio"),
                           content: TextField(
                             controller: bioController,
-                            decoration: const InputDecoration(hintText: "Enter your bio"),
+                            decoration: const InputDecoration(
+                                hintText: "Enter your bio"),
                           ),
                           actions: [
                             TextButton(
@@ -215,13 +224,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Get.to(() => ProfilePage()); // Replace with actual navigation
+                      Get.to(() =>
+                          ProfilePage()); // Replace with actual navigation
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
-                    leading: const Icon(Icons.subscriptions, color: Colors.white),
+                    leading:
+                        const Icon(Icons.subscriptions, color: Colors.white),
                     title: const Text(
                       "Subscription",
                       style: TextStyle(color: Colors.white),
@@ -230,19 +240,19 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       Get.to(() => SubscriptionPlanPage());
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
-                    leading: const Icon(Icons.calendar_today, color: Colors.white),
+                    leading:
+                        const Icon(Icons.calendar_today, color: Colors.white),
                     title: const Text(
                       "Appointments",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Get.to(() => ViewAppointmentsPage());  // Navigate to ViewAppointmentsPage
+                      Get.to(() =>
+                          ViewAppointmentsPage()); // Navigate to ViewAppointmentsPage
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
                     leading: const Icon(Icons.logout, color: Colors.white),
@@ -251,18 +261,25 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () async {
+                      await AuthServices().signOut();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
                       // Clear session data
                       // Example with SharedPreferences:
-                      final prefs = await SharedPreferences.getInstance();
-                      await prefs.clear();
+                      // final prefs = await SharedPreferences.getInstance();
+                      // await prefs.clear();
 
-                      // Reset NavigationController state
-                      final navController = Get.find<NavigationController>();
-                      navController.selectedIndex.value = 2; // Default to 'Home'
-                      navController.pageController.jumpToPage(2);
+                      // // Reset NavigationController state
+                      // final navController = Get.find<NavigationController>();
+                      // navController.selectedIndex.value =
+                      //     2; // Default to 'Home'
+                      // navController.pageController.jumpToPage(2);
 
-                      // Navigate to WelcomeScreen
-                      Get.offAll(() => WelcomeScreen());
+                      // // Navigate to WelcomeScreen
+                      // Get.offAll(() => WelcomeScreen());
                     },
                   ),
                 ],

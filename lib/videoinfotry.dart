@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // For Firebase Authentication
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoInfoTry extends StatefulWidget {
-  final String uid; // Pass the user's UID when navigating to this screen.
-
-  const VideoInfoTry ({Key? key, required this.uid}) : super(key: key);
+  const VideoInfoTry({Key? key}) : super(key: key);
 
   @override
   _VideoInfoTryState createState() => _VideoInfoTryState();
@@ -24,20 +23,27 @@ class _VideoInfoTryState extends State<VideoInfoTry> {
 
   Future<void> fetchUserData() async {
     try {
-      // Fetch data from Firestore
-      final doc = await FirebaseFirestore.instance
+      // Get the current user's UID from Firebase Authentication
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser == null) {
+        throw Exception("User not logged in");
+      }
+      final uid = currentUser.uid;
+
+      // Fetch data from Firestore using the user's UID
+      final document = await FirebaseFirestore.instance
           .collection('user_medicalQuest')
-          .doc(widget.uid)
+          .doc(uid)
           .get();
 
-      if (doc.exists) {
-        final data = doc.data();
-        final healthConditions = data?['healthConditions'] as List<dynamic>? ?? [];
+      if (document.exists) {
+        final data = document.data();
+        final healthCondition = data?['healthConditions']; // Singular value
 
-        // Map health conditions to recommended videos
-        final recommendedVideos = getRecommendedVideos(healthConditions);
+        // Map health condition to recommended videos
+        final recommendedVideos = getRecommendedVideos(healthCondition);
 
-        // Update video URLs
+        // Update video URLs and controllers
         setState(() {
           videoUrls.addAll(recommendedVideos);
           _controllers.addAll(recommendedVideos.map((url) {
@@ -62,31 +68,29 @@ class _VideoInfoTryState extends State<VideoInfoTry> {
     }
   }
 
-  List<String> getRecommendedVideos(List<dynamic> healthConditions) {
+  List<String> getRecommendedVideos(String? healthCondition) {
     // Example mapping of health conditions to YouTube video URLs
     final recommendations = {
-      'Joint Pain or arthritis': [
+      'Joint Pain': [
         'https://www.youtube.com/watch?v=3qyWpJ34dWw',
         'https://www.youtube.com/watch?v=AnYl6Nk9GOA',
       ],
-      'None of the above': [
+      'Back Pain': [
         'https://www.youtube.com/watch?v=UItWltVZZmE',
-        'https://www.youtube.com/watch?v=50kH47ZztHs',
+        'https://www.youtube.com/watch?v=Eml2xnoLpYE',
       ],
-      'Diabetes': [
-        'https://www.youtube.com/watch?v=v7AYKMP6rOE',
-        'https://www.youtube.com/watch?v=qULTwquOuT4',
+      'None of the above': [
+        'https://www.youtube.com/watch?v=3qyWpJ34dWw',
+        'https://www.youtube.com/watch?v=kZDvg92tTMc',
+      ],
+      'Heart Disease': [
+        'https://www.youtube.com/watch?v=3qyWpJ34dWw',
+        'https://www.youtube.com/watch?v=AnYl6Nk9GOA',
       ],
     };
 
-    final recommendedVideos = <String>[];
-    for (var condition in healthConditions) {
-      if (recommendations.containsKey(condition)) {
-        recommendedVideos.addAll(recommendations[condition]!);
-      }
-    }
-
-    return recommendedVideos;
+    // Return videos for the given condition, or an empty list if condition not found
+    return recommendations[healthCondition] ?? [];
   }
 
   @override
@@ -132,18 +136,17 @@ class _VideoInfoTryState extends State<VideoInfoTry> {
                                 color: Colors.white,
                               ),
                             ),
-                            const Spacer(),
-                            const Icon(Icons.info_outline, size: 25, color: Colors.white),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        const Text(
-                          "Recommended Workouts",
+                           const Text(
+                          "Cardio Workout",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: Colors.white,
                           ),
+                        ),
+                            const Spacer(),
+                            const Icon(Icons.info_outline, size: 25, color: Colors.white),
+                          ],                         
                         ),
                       ],
                     ),
@@ -151,6 +154,7 @@ class _VideoInfoTryState extends State<VideoInfoTry> {
                   // Video List Section
                   Expanded(
                     child: Container(
+                      height: 300,
                       decoration: const BoxDecoration(
                         color: Color(0xFF1E1E1E),
                         borderRadius: BorderRadius.only(
@@ -161,7 +165,7 @@ class _VideoInfoTryState extends State<VideoInfoTry> {
                       child: videoUrls.isEmpty
                           ? const Center(
                               child: Text(
-                                "No videos found for your health conditions.",
+                                "No videos found for your health condition.",
                                 style: TextStyle(color: Colors.white),
                               ),
                             )

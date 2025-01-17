@@ -132,7 +132,7 @@ class _RedeemPointsState extends State<RedeemPoints> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Text(
-                                    "530 pts",
+                                    "1 pts",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25,

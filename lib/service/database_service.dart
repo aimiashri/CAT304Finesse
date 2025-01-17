@@ -110,7 +110,7 @@ class DatabaseService {
   // saving medical questionnaire data
   Future saveMedicalData({
     required String healthConditions,
-    required String otherHealthCondition,
+    // required String otherHealthCondition,
     required bool hasChestPain,
     required bool hasHeartCondition,
     required bool hasOtherMedicalCondition,
@@ -129,7 +129,7 @@ class DatabaseService {
       // Store medical questionnaire data in the 'user_medicalQuest' collection
       await userMedicalQuestCollection.doc(uid).set({
         "healthConditions": healthConditions,
-        "otherHealthCondition": otherHealthCondition,
+        // "otherHealthCondition": otherHealthCondition,
         "hasChestPain": hasChestPain,
         "hasHeartCondition": hasHeartCondition,
         "hasOtherMedicalCondition": hasOtherMedicalCondition,

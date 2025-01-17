@@ -51,9 +51,9 @@ class AuthServices {
     return res;
   }
 
-  // for sighout
-  signOut() async {
-    // await _auth.signOut();
+  // for signout
+  Future<void> signOut() async {
+    await _auth.signOut();
   }
 
 }

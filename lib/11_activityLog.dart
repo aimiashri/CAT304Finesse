@@ -174,7 +174,7 @@ class _ActivityLogState extends State<ActivityLog> {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "Abs Workout",
+                                "Cardio Workout",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -189,45 +189,45 @@ class _ActivityLogState extends State<ActivityLog> {
                   ),
                 ),
                 SizedBox(height: 10),
-                Container(
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Container(
-                          height: 90,
-                          width: 500,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color(0xFF896CFE),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 20),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              size: 50,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                "Pull Ups",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   child: Stack(
+                //     children: [
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 10),
+                //         child: Container(
+                //           height: 90,
+                //           width: 500,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10),
+                //             color: Color(0xFF896CFE),
+                //           ),
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 25, top: 20),
+                //         child: Row(
+                //           children: [
+                //             Icon(
+                //               Icons.check_circle_outline,
+                //               size: 50,
+                //             ),
+                //             Padding(
+                //               padding: const EdgeInsets.only(left: 10),
+                //               child: Text(
+                //                 "Pull Ups",
+                //                 style: TextStyle(
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.bold,
+                //                   fontSize: 16,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

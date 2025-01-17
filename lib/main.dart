@@ -3,7 +3,6 @@ import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/04_profile_fill.dart';
 import 'package:final_finesse/05_personalise_intro_pg.dart';
-import 'package:final_finesse/07_scanmedReport.dart';
 import 'package:final_finesse/08_medical_quest.dart';
 import 'package:final_finesse/10.1_user_acc_pg.dart';
 import 'package:final_finesse/10.2_sub_plan_pg.dart';
@@ -35,6 +34,7 @@ import '10_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'VideoInfoTry.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

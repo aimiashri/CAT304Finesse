@@ -1,8 +1,8 @@
+import 'package:final_finesse/01_signUpScreen.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '04_profile_fill.dart';
-import '10.1_user_acc_pg.dart'; // Import the UserAccountPage class
 
 class PersonalDetailsPage extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => UserAccountPage()),
+              MaterialPageRoute(builder: (context) => SignupScreen()),
             );
           },
           child: Row(

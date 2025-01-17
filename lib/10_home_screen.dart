@@ -5,6 +5,7 @@ import 'package:final_finesse/16_Article2.dart';
 import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
+import 'package:final_finesse/VideoInfoTry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
-                      Get.to(() => VideoInfoDupe());
+                      Get.to(() => VideoInfoTry());
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),
@@ -166,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 7,
                     ),
                     Text(
-                      "Abs Workout",
+                      "Cardio Workout",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -205,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ]),
                           child: InkWell(
                             onTap: () {
-                              Get.to(() => VideoInfoDupe());
+                              Get.to(() => VideoInfoTry());
                             },
                             child: Icon(Icons.play_circle_fill,
                                 color: Colors.white, size: 65),

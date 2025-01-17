@@ -1,8 +1,8 @@
+import 'package:final_finesse/08_medical_quest.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '05_personalise_intro_pg.dart';
-import '07_scanmedReport.dart'; 
 
 class PersonaliseQuestionsPage extends StatefulWidget {
   @override
@@ -73,8 +73,7 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                   'Lose Weight',
                   'Gain Weight',
                   'Muscle Mass Gain',
-                  'Shape Body', // body toning
-                  'Others' // improve cardio, core strengthening, 
+                  'Shape Body' // body toning 
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -104,9 +103,8 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                 items: [
                   'Yoga',
                   'Pilates',
-                  'Balance Exercises',
-                  'Cardio',
-                  'Others'
+                  'Muscle Mass Gain Exercises',
+                  'Cardio'
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -195,7 +193,7 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                         // Navigate to the next page (MedicalReportScanPage)
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MedicalReportScanPage()),
+                          MaterialPageRoute(builder: (context) => MedicalQuestionnairePage()),
                         );
                       } catch (e) {
                         // Handle errors (e.g., show a snackbar)

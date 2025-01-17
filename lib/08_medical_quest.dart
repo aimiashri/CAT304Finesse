@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '07_scanmedReport.dart';
+import '06_personalise_quest_pg.dart';
 import '08.1_medical_quest_2.dart';
 
 class MedicalQuestionnairePage extends StatefulWidget {
@@ -12,7 +12,12 @@ class MedicalQuestionnairePage extends StatefulWidget {
 
 class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   
+<<<<<<< HEAD
   // // Variables to hold user's responses
+=======
+  // Variables to hold user's responses
+  String healthConditions = '';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
   // List<String> healthConditions = [
   //   'High blood pressure',
   //   'Heart disease',
@@ -23,9 +28,13 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   //   'Others',
   //   'None of the above',
   // ];
+<<<<<<< HEAD
 
   String healthConditions = '';
   // String otherHealthCondition = '';
+=======
+  String otherHealthCondition = '';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
   // List<String> selectedConditions = [];
   bool? hasChestPain;
   bool? hasHeartCondition ;
@@ -41,7 +50,11 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   String testDetails = '';
   bool? hasShortnessOfBreath;
 
+<<<<<<< HEAD
   // final TextEditingController _otherHealthConditionController = TextEditingController();
+=======
+  //final TextEditingController _otherHealthConditionController = TextEditingController();
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
   final TextEditingController _injuryDetailsController = TextEditingController();
   final TextEditingController _mobilityDetailsController = TextEditingController();
   final TextEditingController _otherMedicalConditionController = TextEditingController();
@@ -107,7 +120,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MedicalReportScanPage(),
+                      builder: (context) => PersonaliseQuestionsPage(),
                     ),
                   );
                 },
@@ -127,6 +140,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                   ),
                 ),
               ),
+
               SizedBox(height: 30),
               Expanded(
                 child: SingleChildScrollView(
@@ -143,6 +157,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                         color: Colors.white,
                       ),
                     ),
+
                     const SizedBox(height: 10),
                     Wrap(
                         spacing: 10.0, // Add spacing between chips
@@ -205,6 +220,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                           ),
                         ],
                       ),
+<<<<<<< HEAD
                     // Wrap(
                     //   spacing: 10.0,
                     //   children: healthConditions.map((condition) {
@@ -240,6 +256,41 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                     //       backgroundColor: Colors.white,    // Unselected chip color
                     //     );
                     //   }).toList(),
+=======
+                      // children: healthConditions.map((condition) {
+                      //   return ChoiceChip(
+                      //     label: Text(
+                      //       condition,
+                      //       style: TextStyle(
+                      //         fontSize: 12,
+                      //         color: selectedConditions.contains(condition)
+                      //             ? Colors.white
+                      //             : Colors.black,
+                      //       ),
+                      //     ),
+                      //     selected: selectedConditions.contains(condition),
+                      //     onSelected: (isSelected) {
+                      //       setState(() {
+                      //         if (condition == 'None of the above' && isSelected) {
+                      //           // Clear all selections and only select "None of the above"
+                      //           selectedConditions.clear();
+                      //           selectedConditions.add('None of the above');
+                      //         } else if (condition != 'None of the above') {
+                      //           // If any other condition is selected, unselect "None of the above"
+                      //           selectedConditions.remove('None of the above');
+                      //           if (isSelected) {
+                      //             selectedConditions.add(condition);
+                      //           } else {
+                      //             selectedConditions.remove(condition);
+                      //           }
+                      //         }
+                      //       });
+                      //     },
+                      //     selectedColor: Color(0xFF896CFE),  // Selected chip color
+                      //     backgroundColor: Colors.white,    // Unselected chip color
+                      //   );
+                      // }).toList(),
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
                     // ),
                     // if (selectedConditions.contains('Others'))
                     //   Padding(

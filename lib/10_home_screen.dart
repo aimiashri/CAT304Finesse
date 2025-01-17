@@ -5,7 +5,11 @@ import 'package:final_finesse/16_Article2.dart';
 import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
+<<<<<<< HEAD
 import 'package:final_finesse/videoinfotry.dart';
+=======
+import 'package:final_finesse/VideoInfoTry.dart';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,7 +120,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
+<<<<<<< HEAD
                       Get.to(() => VideoInfoTry());
+=======
+                      Get.to(() => VideoInfoDupe());
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),

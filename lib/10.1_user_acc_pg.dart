@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'dart:math';
+// import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/Services/authentication.dart';
 import 'package:final_finesse/navigation_menu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,6 +33,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
 
   Future<void> _fetchUserNickname() async {
     try {
+<<<<<<< HEAD
       // Get user ID from SharedPreferences
       final prefs = await SharedPreferences.getInstance();
       uid =
@@ -43,31 +45,47 @@ class _UserAccountPageState extends State<UserAccountPage> {
         // Fetch user data from the 'user_profile' collection
         DocumentSnapshot userProfileCollection = await FirebaseFirestore
             .instance
+=======
+      // Get the current user's UID from FirebaseAuth
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final uid = user.uid; // Get the UID
+        print("User ID: $uid");
+
+        // Fetch user data from the Firestore collection
+        DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
             .collection('user_profile')
-            .doc(uid)
+            .doc(uid) // Use the UID here
             .get();
 
         if (userProfileCollection.exists) {
+<<<<<<< HEAD
           print("User profile document exists"); // Debugging line
 
           setState(() {
             userNickname = userProfileCollection['nickname'] ??
                 'No nickname'; // Update nickname
+=======
+          print("User profile document exists");
+          setState(() {
+            userNickname = userProfileCollection['nickname'] ?? 'No nickname';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
           });
         } else {
-          print("User profile document does not exist"); // Debugging line
+          print("User profile document does not exist");
           setState(() {
             userNickname = 'No nickname found';
           });
         }
       } else {
-        print("User ID is null"); // Debugging line
+        print("User not logged in");
         setState(() {
           userNickname = 'User not logged in';
         });
       }
     } catch (e) {
-      print("Error fetching nickname: $e"); // Debugging line
+      print("Error fetching nickname: $e");
       setState(() {
         userNickname = 'Error fetching nickname';
       });
@@ -119,6 +137,10 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 ),
               ],
             ),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
             const SizedBox(height: 30),
             InkWell(
               onTap: () async {
@@ -148,7 +170,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
             ),
             const SizedBox(height: 15),
             Text(
-              userNickname = 'Nana',
+              userNickname,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

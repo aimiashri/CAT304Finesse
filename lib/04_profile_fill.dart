@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import '05_personalise_intro_pg.dart';
+import '10.1_user_acc_pg.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -19,6 +20,45 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF1E1E1E),
+                Color(0xFF896CFE),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        title: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UserAccountPage()),
+            );
+          },
+          child: Row(
+            children: const [
+              Icon(Icons.arrow_back_ios, size: 18, color: Colors.white),
+              SizedBox(width: 8),
+              Text(
+                'Profile',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Stack(
         children: [
           Container(
@@ -35,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             child: const Padding(
-              padding: EdgeInsets.only(top: 100.0, left: 5),
+              padding: EdgeInsets.only(top: 50.0, left: 5),
               child: Text(
                 'Fill Profile\nComplete your profile',
                 textAlign: TextAlign.center,
@@ -48,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 280.0),
+            padding: const EdgeInsets.only(top: 210.0),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(

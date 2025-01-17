@@ -101,10 +101,10 @@ class _PersonaliseQuestionsPageState extends State<PersonaliseQuestionsPage> {
                 dropdownColor: Color(0xFF1E1E1E),
                 style: TextStyle(color: Colors.white),
                 items: [
+                  'Cardio',
                   'Yoga',
                   'Pilates',
                   'Muscle Mass Gain Exercises',
-                  'Cardio'
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

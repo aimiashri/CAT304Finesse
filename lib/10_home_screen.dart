@@ -5,6 +5,7 @@ import 'package:final_finesse/16_Article2.dart';
 import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
+import 'package:final_finesse/videoTRYPLAYLIST.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
-                      Get.to(() => VideoInfoDupe());
+                      Get.to(() => VideoInfoTry(uid: '',));
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),

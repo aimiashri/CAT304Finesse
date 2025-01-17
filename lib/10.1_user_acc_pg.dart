@@ -1,9 +1,19 @@
+import 'dart:io';
+// import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_finesse/02_loginScreen.dart';
 import 'package:final_finesse/10_home_screen.dart';
-import 'package:final_finesse/14_ViewVouchers.dart';
+import 'package:final_finesse/Services/authentication.dart';
+import 'package:final_finesse/navigation_menu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '04_profile_fill.dart';
 import '10.2_sub_plan_pg.dart';
+import '00_WelcomeScreen.dart';
+import '35_viewappointment.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserAccountPage extends StatefulWidget {
   @override
@@ -11,8 +21,78 @@ class UserAccountPage extends StatefulWidget {
 }
 
 class _UserAccountPageState extends State<UserAccountPage> {
-  String userNickname = "JohnDoe"; // Example data
+  String userNickname = "Nana"; // Placeholder until data is fetched
   String userBio = "This is my bio."; // Example data
+  String? uid;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserNickname(); // Fetch nickname on page load
+  }
+
+  Future<void> _fetchUserNickname() async {
+    try {
+<<<<<<< HEAD
+      // Get user ID from SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      uid =
+          prefs.getString('uid'); // Assume 'uid' is saved in SharedPreferences
+
+      if (uid != null) {
+        print("User ID: $uid"); // Debugging line
+
+        // Fetch user data from the 'user_profile' collection
+        DocumentSnapshot userProfileCollection = await FirebaseFirestore
+            .instance
+=======
+      // Get the current user's UID from FirebaseAuth
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final uid = user.uid; // Get the UID
+        print("User ID: $uid");
+
+        // Fetch user data from the Firestore collection
+        DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
+            .collection('user_profile')
+            .doc(uid) // Use the UID here
+            .get();
+
+        if (userProfileCollection.exists) {
+<<<<<<< HEAD
+          print("User profile document exists"); // Debugging line
+
+          setState(() {
+            userNickname = userProfileCollection['nickname'] ??
+                'No nickname'; // Update nickname
+=======
+          print("User profile document exists");
+          setState(() {
+            userNickname = userProfileCollection['nickname'] ?? 'No nickname';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
+          });
+        } else {
+          print("User profile document does not exist");
+          setState(() {
+            userNickname = 'No nickname found';
+          });
+        }
+      } else {
+        print("User not logged in");
+        setState(() {
+          userNickname = 'User not logged in';
+        });
+      }
+    } catch (e) {
+      print("Error fetching nickname: $e");
+      setState(() {
+        userNickname = 'Error fetching nickname';
+      });
+    }
+  }
+
+  File? image;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +117,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
                   },
-                  child: const Icon(Icons.arrow_back_ios, size: 18, color: Colors.white),
+                  child: const Icon(Icons.arrow_back_ios,
+                      size: 18, color: Colors.white),
                 ),
                 const SizedBox(width: 10),
                 const Text(
@@ -56,36 +137,36 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 ),
               ],
             ),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
             const SizedBox(height: 30),
-            Stack(
-              children: [
-                CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage('assets/default_profile.png'), // Replace with your asset
-                  backgroundColor: Colors.grey,
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: () {
-                      // Add logic to edit the profile picture
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      padding: const EdgeInsets.all(5),
-                      child: const Icon(
+            InkWell(
+              onTap: () async {
+                // Add profile picture
+                final picture =
+                    await ImagePicker().pickImage(source: ImageSource.gallery);
+                if (picture != null) {
+                  image = File(picture.path);
+                  setState(() {});
+                }
+              },
+              child: image == null
+                  ? const CircleAvatar(
+                      radius: 90,
+                      child: Icon(
                         Icons.camera_alt,
-                        color: Color(0xFF896CFE),
-                        size: 20,
+                        size: 50,
                       ),
-                    ),
-                  ),
-                ),
-              ],
+                    )
+                  : ClipOval(
+                      child: Image.file(
+                      image!,
+                      height: 110,
+                      width: 110,
+                      fit: BoxFit.cover,
+                    )),
             ),
             const SizedBox(height: 15),
             Text(
@@ -116,12 +197,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        TextEditingController bioController = TextEditingController(text: userBio);
+                        TextEditingController bioController =
+                            TextEditingController(text: userBio);
                         return AlertDialog(
                           title: const Text("Edit Bio"),
                           content: TextField(
                             controller: bioController,
-                            decoration: const InputDecoration(hintText: "Enter your bio"),
+                            decoration: const InputDecoration(
+                                hintText: "Enter your bio"),
                           ),
                           actions: [
                             TextButton(
@@ -163,13 +246,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Get.to(() => ProfilePage()); // Replace with actual navigation
+                      Get.to(() =>
+                          ProfilePage()); // Replace with actual navigation
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
-                    leading: const Icon(Icons.subscriptions, color: Colors.white),
+                    leading:
+                        const Icon(Icons.subscriptions, color: Colors.white),
                     title: const Text(
                       "Subscription",
                       style: TextStyle(color: Colors.white),
@@ -178,40 +262,46 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       Get.to(() => SubscriptionPlanPage());
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
-                    leading: const Icon(Icons.card_giftcard, color: Colors.white),
+                    leading:
+                        const Icon(Icons.calendar_today, color: Colors.white),
                     title: const Text(
-                      "Vouchers",
+                      "Appointments",
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Get.to(() => ViewVoucher());
+                      Get.to(() =>
+                          ViewAppointmentsPage()); // Navigate to ViewAppointmentsPage
                     },
                   ),
-
                   Divider(color: Colors.white, thickness: 0.5),
                   ListTile(
-                    leading: const Icon(Icons.flag, color: Colors.white),
+                    leading: const Icon(Icons.logout, color: Colors.white),
                     title: const Text(
-                      "Challenges",
+                      "Log Out",
                       style: TextStyle(color: Colors.white),
                     ),
-                    onTap: () {
-                      // Navigate to challenges page
-                    },
-                  ),
+                    onTap: () async {
+                      await AuthServices().signOut();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                      // Clear session data
+                      // Example with SharedPreferences:
+                      // final prefs = await SharedPreferences.getInstance();
+                      // await prefs.clear();
 
-                  Divider(color: Colors.white, thickness: 0.5),
-                  ListTile(
-                    leading: const Icon(Icons.security, color: Colors.white),
-                    title: const Text(
-                      "Security",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onTap: () {
-                      // Navigate to security page
+                      // // Reset NavigationController state
+                      // final navController = Get.find<NavigationController>();
+                      // navController.selectedIndex.value =
+                      //     2; // Default to 'Home'
+                      // navController.pageController.jumpToPage(2);
+
+                      // // Navigate to WelcomeScreen
+                      // Get.offAll(() => WelcomeScreen());
                     },
                   ),
                 ],

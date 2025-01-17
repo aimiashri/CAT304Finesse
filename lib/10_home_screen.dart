@@ -5,6 +5,11 @@ import 'package:final_finesse/16_Article2.dart';
 import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
+<<<<<<< HEAD
+import 'package:final_finesse/videoinfotry.dart';
+=======
+import 'package:final_finesse/VideoInfoTry.dart';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,27 +25,23 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, String>> items = [
     {
       'title': 'Getting Optimal Health',
-      'imageUrl':
-          'assets/img/food.jpg',
+      'imageUrl': 'assets/img/food.jpg',
     },
     {
       'title': 'Busy Schedule Eating',
-      'imageUrl':
-          'assets/img/busyeating.jpg',
+      'imageUrl': 'assets/img/busyeating.jpg',
     },
     {
       'title': 'Balanced Nutrition',
-      'imageUrl':
-          'assets/img/balanced.jpg',
+      'imageUrl': 'assets/img/balanced.jpg',
     },
     {
       'title': 'Role of Regular Exercise',
-      'imageUrl':
-          'assets/img/exercise.webp',
+      'imageUrl': 'assets/img/exercise.webp',
     },
   ];
 
-  List<String> title= [
+  List<String> title = [
     'Healthy Eating',
     'Morning Yoga',
     'Cardio Workout',
@@ -119,7 +120,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
+<<<<<<< HEAD
+                      Get.to(() => VideoInfoTry());
+=======
                       Get.to(() => VideoInfoDupe());
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),
@@ -163,10 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                         )),
                     SizedBox(
-                      height: 7,
+                      height: 25,
                     ),
                     Text(
-                      "Abs Workout",
+                      "Cardio Workout",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -205,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ]),
                           child: InkWell(
                             onTap: () {
-                              Get.to(() => VideoInfoDupe());
+                              Get.to(() => VideoInfoTry());
                             },
                             child: Icon(Icons.play_circle_fill,
                                 color: Colors.white, size: 65),
@@ -258,7 +263,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
                                         Text(
                                           "Plank with Hip Twist",

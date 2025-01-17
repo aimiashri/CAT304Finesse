@@ -117,7 +117,7 @@ class _SignupScreenState extends State<LoginScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const NavigationMenu(),
+                      builder: (context) => PersonalDetailsPage(),
                     ),
                   );
                 },

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '07_scanmedReport.dart';
+import '06_personalise_quest_pg.dart';
 import '08.1_medical_quest_2.dart';
 
 class MedicalQuestionnairePage extends StatefulWidget {
@@ -12,19 +12,30 @@ class MedicalQuestionnairePage extends StatefulWidget {
 
 class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   
+<<<<<<< HEAD
+  // // Variables to hold user's responses
+=======
   // Variables to hold user's responses
-  List<String> healthConditions = [
-    'High blood pressure',
-    'Heart disease',
-    'Diabetes',
-    'Asthma or breathing issues',
-    'Joint pain or arthritis',
-    'Back pain',
-    'Others',
-    'None of the above',
-  ];
+  String healthConditions = '';
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
+  // List<String> healthConditions = [
+  //   'High blood pressure',
+  //   'Heart disease',
+  //   'Diabetes',
+  //   'Asthma or breathing issues',
+  //   'Joint pain or arthritis',
+  //   'Back pain',
+  //   'Others',
+  //   'None of the above',
+  // ];
+<<<<<<< HEAD
+
+  String healthConditions = '';
+  // String otherHealthCondition = '';
+=======
   String otherHealthCondition = '';
-  List<String> selectedConditions = [];
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
+  // List<String> selectedConditions = [];
   bool? hasChestPain;
   bool? hasHeartCondition ;
   bool? hasOtherMedicalCondition;
@@ -39,7 +50,11 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   String testDetails = '';
   bool? hasShortnessOfBreath;
 
-  final TextEditingController _otherHealthConditionController = TextEditingController();
+<<<<<<< HEAD
+  // final TextEditingController _otherHealthConditionController = TextEditingController();
+=======
+  //final TextEditingController _otherHealthConditionController = TextEditingController();
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
   final TextEditingController _injuryDetailsController = TextEditingController();
   final TextEditingController _mobilityDetailsController = TextEditingController();
   final TextEditingController _otherMedicalConditionController = TextEditingController();
@@ -59,8 +74,8 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   Future<void> saveMedicalData() async {
     try {
       await _databaseService.saveMedicalData(
-        healthConditions: healthConditions.join(', '), // Safely joining the list
-        otherHealthCondition: _otherHealthConditionController.text,
+        healthConditions: healthConditions, // Safely joining the list
+        // otherHealthCondition: _otherHealthConditionController.text,
         hasChestPain: hasChestPain ?? false,
         hasHeartCondition: hasHeartCondition ?? false,
         hasOtherMedicalCondition: hasOtherMedicalCondition ?? false,
@@ -105,7 +120,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MedicalReportScanPage(),
+                      builder: (context) => PersonaliseQuestionsPage(),
                     ),
                   );
                 },
@@ -125,6 +140,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                   ),
                 ),
               ),
+
               SizedBox(height: 30),
               Expanded(
                 child: SingleChildScrollView(
@@ -141,57 +157,153 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                         color: Colors.white,
                       ),
                     ),
+
                     const SizedBox(height: 10),
                     Wrap(
-                      spacing: 10.0,
-                      children: healthConditions.map((condition) {
-                        return ChoiceChip(
-                          label: Text(
-                            condition,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: selectedConditions.contains(condition)
-                                  ? Colors.white
-                                  : Colors.black,
+                        spacing: 10.0, // Add spacing between chips
+                        children: [
+                          ChoiceChip(
+                            label: const Text(
+                              'Joint Pain',
+                              style: TextStyle(color: Colors.black, fontSize: 12),
                             ),
+                            selected: healthConditions == 'Joint Pain',
+                            onSelected: (isSelected) {
+                              setState(() {
+                                healthConditions = (isSelected ? 'Joint Pain' : null)!;
+                              });
+                            },
+                            selectedColor: Color(0xFF896CFE),  // Selected chip color
+                            backgroundColor: Colors.white, // Unselected chip color
                           ),
-                          selected: selectedConditions.contains(condition),
-                          onSelected: (isSelected) {
-                            setState(() {
-                              if (condition == 'None of the above' && isSelected) {
-                                // Clear all selections and only select "None of the above"
-                                selectedConditions.clear();
-                                selectedConditions.add('None of the above');
-                              } else if (condition != 'None of the above') {
-                                // If any other condition is selected, unselect "None of the above"
-                                selectedConditions.remove('None of the above');
-                                if (isSelected) {
-                                  selectedConditions.add(condition);
-                                } else {
-                                  selectedConditions.remove(condition);
-                                }
-                              }
-                            });
-                          },
-                          selectedColor: Color(0xFF896CFE),  // Selected chip color
-                          backgroundColor: Colors.white,    // Unselected chip color
-                        );
-                      }).toList(),
-                    ),
-                    if (selectedConditions.contains('Others'))
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: TextField(
-                          controller: _otherHealthConditionController,
-                          decoration: const InputDecoration(
-                            labelText: 'Specify health issue',
-                            labelStyle: TextStyle(color: Colors.white),
+                          ChoiceChip(
+                            label: const Text(
+                              'Heart Disease',
+                              style: TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                            selected: healthConditions == 'Heart Disease',
+                            onSelected: (isSelected) {
+                              setState(() {
+                                healthConditions = (isSelected ? 'Heart Disease' : null)!;
+                              });
+                            },
+                            selectedColor: Color(0xFF896CFE),
+                            backgroundColor: Colors.white,
                           ),
-                          style: const TextStyle(color: Colors.white),
-                        ),
+                          ChoiceChip(
+                            label: const Text(
+                              'Back Pain',
+                              style: TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                            selected: healthConditions == 'Back Pain',
+                            onSelected: (isSelected) {
+                              setState(() {
+                                healthConditions = (isSelected ? 'Back Pain' : null)!;
+                              });
+                            },
+                            selectedColor: Color(0xFF896CFE),
+                            backgroundColor: Colors.white,
+                          ),
+                          ChoiceChip(
+                            label: const Text(
+                              'None of the above',
+                              style: TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                            selected: healthConditions == 'None of the above',
+                            onSelected: (isSelected) {
+                              setState(() {
+                                healthConditions = (isSelected ? 'None of the above' : null)!;
+                              });
+                            },
+                            selectedColor: Color(0xFF896CFE),
+                            backgroundColor: Colors.white,
+                          ),
+                        ],
                       ),
-
-
+<<<<<<< HEAD
+                    // Wrap(
+                    //   spacing: 10.0,
+                    //   children: healthConditions.map((condition) {
+                    //     return ChoiceChip(
+                    //       label: Text(
+                    //         condition,
+                    //         style: TextStyle(
+                    //           fontSize: 12,
+                    //           color: selectedConditions.contains(condition)
+                    //               ? Colors.white
+                    //               : Colors.black,
+                    //         ),
+                    //       ),
+                    //       selected: selectedConditions.contains(condition),
+                    //       onSelected: (isSelected) {
+                    //         setState(() {
+                    //           if (condition == 'None of the above' && isSelected) {
+                    //             // Clear all selections and only select "None of the above"
+                    //             selectedConditions.clear();
+                    //             selectedConditions.add('None of the above');
+                    //           } else if (condition != 'None of the above') {
+                    //             // If any other condition is selected, unselect "None of the above"
+                    //             selectedConditions.remove('None of the above');
+                    //             if (isSelected) {
+                    //               selectedConditions.add(condition);
+                    //             } else {
+                    //               selectedConditions.remove(condition);
+                    //             }
+                    //           }
+                    //         });
+                    //       },
+                    //       selectedColor: Color(0xFF896CFE),  // Selected chip color
+                    //       backgroundColor: Colors.white,    // Unselected chip color
+                    //     );
+                    //   }).toList(),
+=======
+                      // children: healthConditions.map((condition) {
+                      //   return ChoiceChip(
+                      //     label: Text(
+                      //       condition,
+                      //       style: TextStyle(
+                      //         fontSize: 12,
+                      //         color: selectedConditions.contains(condition)
+                      //             ? Colors.white
+                      //             : Colors.black,
+                      //       ),
+                      //     ),
+                      //     selected: selectedConditions.contains(condition),
+                      //     onSelected: (isSelected) {
+                      //       setState(() {
+                      //         if (condition == 'None of the above' && isSelected) {
+                      //           // Clear all selections and only select "None of the above"
+                      //           selectedConditions.clear();
+                      //           selectedConditions.add('None of the above');
+                      //         } else if (condition != 'None of the above') {
+                      //           // If any other condition is selected, unselect "None of the above"
+                      //           selectedConditions.remove('None of the above');
+                      //           if (isSelected) {
+                      //             selectedConditions.add(condition);
+                      //           } else {
+                      //             selectedConditions.remove(condition);
+                      //           }
+                      //         }
+                      //       });
+                      //     },
+                      //     selectedColor: Color(0xFF896CFE),  // Selected chip color
+                      //     backgroundColor: Colors.white,    // Unselected chip color
+                      //   );
+                      // }).toList(),
+>>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
+                    // ),
+                    // if (selectedConditions.contains('Others'))
+                    //   Padding(
+                    //     padding: const EdgeInsets.only(top: 10.0),
+                    //     child: TextField(
+                    //       controller: _otherHealthConditionController,
+                    //       decoration: const InputDecoration(
+                    //         labelText: 'Specify health issue',
+                    //         labelStyle: TextStyle(color: Colors.white),
+                    //       ),
+                    //       style: const TextStyle(color: Colors.white),
+                    //     ),
+                    //   ),
                       const SizedBox(height: 20),
                       const Text(
                         'Have you ever experienced chest pain during physical activity?',

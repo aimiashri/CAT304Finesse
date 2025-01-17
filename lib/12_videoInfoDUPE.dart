@@ -11,9 +11,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 final videoUrls = [
   'https://www.youtube.com/watch?v=3qyWpJ34dWw',
   'https://www.youtube.com/watch?v=AnYl6Nk9GOA',
-  // 'https://www.youtube.com/watch?v=JSqUZFkRLr8',
-  // 'https://www.youtube.com/watch?v=qEZf2q4W20g',
-  // 'https://www.youtube.com/watch?v=jCbclWBV32o'
+  // can add more videos here
 ];
 
 class VideoInfoDupe extends StatefulWidget {

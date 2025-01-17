@@ -33,19 +33,6 @@ class _UserAccountPageState extends State<UserAccountPage> {
 
   Future<void> _fetchUserNickname() async {
     try {
-<<<<<<< HEAD
-      // Get user ID from SharedPreferences
-      final prefs = await SharedPreferences.getInstance();
-      uid =
-          prefs.getString('uid'); // Assume 'uid' is saved in SharedPreferences
-
-      if (uid != null) {
-        print("User ID: $uid"); // Debugging line
-
-        // Fetch user data from the 'user_profile' collection
-        DocumentSnapshot userProfileCollection = await FirebaseFirestore
-            .instance
-=======
       // Get the current user's UID from FirebaseAuth
       final User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
@@ -54,23 +41,14 @@ class _UserAccountPageState extends State<UserAccountPage> {
 
         // Fetch user data from the Firestore collection
         DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
->>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
             .collection('user_profile')
             .doc(uid) // Use the UID here
             .get();
 
         if (userProfileCollection.exists) {
-<<<<<<< HEAD
-          print("User profile document exists"); // Debugging line
-
-          setState(() {
-            userNickname = userProfileCollection['nickname'] ??
-                'No nickname'; // Update nickname
-=======
           print("User profile document exists");
           setState(() {
             userNickname = userProfileCollection['nickname'] ?? 'No nickname';
->>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
           });
         } else {
           print("User profile document does not exist");
@@ -137,10 +115,6 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 ),
               ],
             ),
-<<<<<<< HEAD
-=======
-
->>>>>>> 93ca18ca8c5e5f1f397dbcb1e581b25ae3e99329
             const SizedBox(height: 30),
             InkWell(
               onTap: () async {

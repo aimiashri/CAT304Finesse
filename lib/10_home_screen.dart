@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(width: 5),
                 InkWell(
                     onTap: () {
-                      Get.to(() => VideoInfoTry());
+                      Get.to(() => VideoInfoDupe());
                     },
                     child: Icon(Icons.arrow_forward_ios,
                         size: 20, color: Colors.white)),

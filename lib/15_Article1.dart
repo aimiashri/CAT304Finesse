@@ -24,7 +24,7 @@ class Article1 extends StatelessWidget {
                       child: Icon(Icons.arrow_back_ios,
                           size: 20, color: Colors.white)),
                   Text(
-                    "Articles and Tips",
+                    "Tips and Articles",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

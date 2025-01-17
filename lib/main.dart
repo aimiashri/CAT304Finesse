@@ -26,6 +26,7 @@ import 'package:final_finesse/12_videoInfoDUPE.dart';
 import 'package:final_finesse/27_chatPage.dart';
 import 'package:final_finesse/32_personal_trainer_detail.dart';
 import 'package:final_finesse/01_signUpScreen.dart';
+import 'package:final_finesse/videoTRYPLAYLIST.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 //import 'package:final_finesse/video_info.dart';

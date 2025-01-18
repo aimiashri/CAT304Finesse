@@ -5,7 +5,7 @@ import 'package:final_finesse/16_Article2.dart';
 import 'package:final_finesse/17_Article3.dart';
 import 'package:final_finesse/18_Article4.dart';
 import 'package:final_finesse/20_challenges.dart';
-import 'package:final_finesse/VideoInfoTry.dart';
+import 'package:final_finesse/videoinfotry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

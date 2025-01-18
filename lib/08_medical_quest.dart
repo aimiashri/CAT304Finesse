@@ -40,6 +40,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   String testDetails = '';
   bool? hasShortnessOfBreath;
 
+  // final TextEditingController _otherHealthConditionController = TextEditingController();
   //final TextEditingController _otherHealthConditionController = TextEditingController();
   final TextEditingController _injuryDetailsController = TextEditingController();
   final TextEditingController _mobilityDetailsController = TextEditingController();

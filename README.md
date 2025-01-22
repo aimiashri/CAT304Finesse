@@ -1,16 +1,5 @@
-# final_finesse
+# FINESSE
 
-A new Flutter project.
+Personalised Fitness Application where we tailor workout plans exclusively for users with existing health conditions and metrics.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Img_Alt](https://github.com/aimiashri/Personalized-Fitness-Application-FINESSE/blob/77d35427c670f474f23a67b458158bdc1f29de36/FINESSE.png)

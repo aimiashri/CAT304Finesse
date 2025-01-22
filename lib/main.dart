@@ -35,6 +35,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'VideoInfoTry.dart';
+import '10.3_edit_profile.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,9 +1,9 @@
+import 'package:final_finesse/03_personalDetail.dart';
 import 'package:final_finesse/service/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import '05_personalise_intro_pg.dart';
-import '10.1_user_acc_pg.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => UserAccountPage()),
+              MaterialPageRoute(builder: (context) => PersonalDetailsPage()),
             );
           },
           child: Row(

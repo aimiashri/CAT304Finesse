@@ -40,10 +40,11 @@ class _UserAccountPageState extends State<UserAccountPage> {
         print("User ID: $uid");
 
         // Fetch user data from the Firestore collection
-        DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
-            .collection('user_profile')
-            .doc(uid) // Use the UID here
-            .get();
+        DocumentSnapshot userProfileCollection =
+            await FirebaseFirestore.instance
+                .collection('user_profile')
+                .doc(uid) // Use the UID here
+                .get();
 
         if (userProfileCollection.exists) {
           print("User profile document exists");

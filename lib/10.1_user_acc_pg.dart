@@ -1,19 +1,17 @@
 import 'dart:io';
-// import 'dart:math';
+//import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_finesse/02_loginScreen.dart';
+import 'package:final_finesse/10.3_edit_profile.dart';
 import 'package:final_finesse/10_home_screen.dart';
 import 'package:final_finesse/Services/authentication.dart';
-import 'package:final_finesse/navigation_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '04_profile_fill.dart';
 import '10.2_sub_plan_pg.dart';
 import '00_WelcomeScreen.dart';
 import '35_viewappointment.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserAccountPage extends StatefulWidget {
   @override
@@ -40,10 +38,11 @@ class _UserAccountPageState extends State<UserAccountPage> {
         print("User ID: $uid");
 
         // Fetch user data from the Firestore collection
-        DocumentSnapshot userProfileCollection = await FirebaseFirestore.instance
-            .collection('user_profile')
-            .doc(uid) // Use the UID here
-            .get();
+        DocumentSnapshot userProfileCollection =
+            await FirebaseFirestore.instance
+                .collection('user_profile')
+                .doc(uid) // Use the UID here
+                .get();
 
         if (userProfileCollection.exists) {
           print("User profile document exists");
@@ -221,7 +220,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     ),
                     onTap: () {
                       Get.to(() =>
-                          ProfilePage()); // Replace with actual navigation
+                          EditProfilePage()); // Replace with actual navigation
                     },
                   ),
                   Divider(color: Colors.white, thickness: 0.5),

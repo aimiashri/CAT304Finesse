@@ -12,7 +12,8 @@ class MedicalQuestionnairePage extends StatefulWidget {
 
 class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   
-  // // Variables to hold user's responses
+  // Variables to hold user's responses
+  String healthConditions = '';
   // List<String> healthConditions = [
   //   'High blood pressure',
   //   'Heart disease',
@@ -23,9 +24,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   //   'Others',
   //   'None of the above',
   // ];
-
-  String healthConditions = '';
-  // String otherHealthCondition = '';
+  String otherHealthCondition = '';
   // List<String> selectedConditions = [];
   bool? hasChestPain;
   bool? hasHeartCondition ;
@@ -42,6 +41,7 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
   bool? hasShortnessOfBreath;
 
   // final TextEditingController _otherHealthConditionController = TextEditingController();
+  //final TextEditingController _otherHealthConditionController = TextEditingController();
   final TextEditingController _injuryDetailsController = TextEditingController();
   final TextEditingController _mobilityDetailsController = TextEditingController();
   final TextEditingController _otherMedicalConditionController = TextEditingController();
@@ -207,41 +207,39 @@ class _MedicalQuestionnairePageState extends State<MedicalQuestionnairePage> {
                           ),
                         ],
                       ),
-                    // Wrap(
-                    //   spacing: 10.0,
-                    //   children: healthConditions.map((condition) {
-                    //     return ChoiceChip(
-                    //       label: Text(
-                    //         condition,
-                    //         style: TextStyle(
-                    //           fontSize: 12,
-                    //           color: selectedConditions.contains(condition)
-                    //               ? Colors.white
-                    //               : Colors.black,
-                    //         ),
-                    //       ),
-                    //       selected: selectedConditions.contains(condition),
-                    //       onSelected: (isSelected) {
-                    //         setState(() {
-                    //           if (condition == 'None of the above' && isSelected) {
-                    //             // Clear all selections and only select "None of the above"
-                    //             selectedConditions.clear();
-                    //             selectedConditions.add('None of the above');
-                    //           } else if (condition != 'None of the above') {
-                    //             // If any other condition is selected, unselect "None of the above"
-                    //             selectedConditions.remove('None of the above');
-                    //             if (isSelected) {
-                    //               selectedConditions.add(condition);
-                    //             } else {
-                    //               selectedConditions.remove(condition);
-                    //             }
-                    //           }
-                    //         });
-                    //       },
-                    //       selectedColor: Color(0xFF896CFE),  // Selected chip color
-                    //       backgroundColor: Colors.white,    // Unselected chip color
-                    //     );
-                    //   }).toList(),
+                      // children: healthConditions.map((condition) {
+                      //   return ChoiceChip(
+                      //     label: Text(
+                      //       condition,
+                      //       style: TextStyle(
+                      //         fontSize: 12,
+                      //         color: selectedConditions.contains(condition)
+                      //             ? Colors.white
+                      //             : Colors.black,
+                      //       ),
+                      //     ),
+                      //     selected: selectedConditions.contains(condition),
+                      //     onSelected: (isSelected) {
+                      //       setState(() {
+                      //         if (condition == 'None of the above' && isSelected) {
+                      //           // Clear all selections and only select "None of the above"
+                      //           selectedConditions.clear();
+                      //           selectedConditions.add('None of the above');
+                      //         } else if (condition != 'None of the above') {
+                      //           // If any other condition is selected, unselect "None of the above"
+                      //           selectedConditions.remove('None of the above');
+                      //           if (isSelected) {
+                      //             selectedConditions.add(condition);
+                      //           } else {
+                      //             selectedConditions.remove(condition);
+                      //           }
+                      //         }
+                      //       });
+                      //     },
+                      //     selectedColor: Color(0xFF896CFE),  // Selected chip color
+                      //     backgroundColor: Colors.white,    // Unselected chip color
+                      //   );
+                      // }).toList(),
                     // ),
                     // if (selectedConditions.contains('Others'))
                     //   Padding(
